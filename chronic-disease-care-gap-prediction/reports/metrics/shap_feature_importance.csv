@@ -1,0 +1,40 @@
+feature,mean_abs_shap
+days_since_last_visit,0.36167486107913555
+high_noshow_history,0.20555008805506322
+days_since_last_reminder_sent,0.19396267315894275
+open_care_gaps_count,0.17920504287217734
+pdc_medication_adherence,0.17401411738893446
+telehealth_enrolled,0.16598661892504504
+has_transportation_barrier,0.1454443118805339
+prior_noshow_rate,0.13021233342401142
+distance_to_clinic_miles,0.12232424464455412
+reminder_contact_on_file,0.11159079921799882
+has_pcp_assigned,0.10350156564958388
+language_barrier_flag,0.09090375455577361
+age,0.046441247584348616
+multiple_open_gaps,0.02753017771789777
+low_adherence,0.025411610427532934
+insurance_type_Commercial,0.024635318718935637
+overdue_long,0.021829757524327437
+sex_F,0.021701373397864217
+has_diabetes,0.019663064836598323
+focus_service_Pulmonary follow-up,0.01646824787300524
+sex_M,0.016386752762308315
+has_hypertension,0.014895252516849021
+focus_service_Flu/pneumonia vaccination,0.014708509939146172
+focus_service_Nephropathy screening,0.011648389097112915
+has_chf,0.010695971415591213
+n_chronic_conditions,0.010233689899238448
+has_ckd,0.009626864573091939
+focus_service_Cardiology follow-up,0.009005917793207743
+insurance_type_Medicaid MCO,0.008494785980941055
+focus_service_Diabetic foot exam,0.008377470872699208
+focus_service_HbA1c test,0.00749234694326446
+has_copd,0.007033043002073122
+insurance_type_Medicare Advantage,0.00637856419333425
+focus_service_Lipid panel,0.0054083499138314365
+focus_service_Diabetic eye exam,0.005232288334841824
+focus_service_Weight/fluid check,0.0019561591707296425
+insurance_type_Dual-eligible,0.0016498232397318493
+focus_service_Blood pressure check,0.00148594270771765
+focus_service_Nephrology follow-up,0.0003462629512135427
