@@ -1,4 +1,0 @@
-model,roc_auc,pr_auc,precision_at_10pct,precision_at_20pct
-Logistic Regression,0.716,0.583,0.7,0.613
-Random Forest,0.711,0.569,0.66,0.595
-XGBoost,0.707,0.567,0.683,0.602
