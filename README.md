@@ -1,151 +1,123 @@
-# Hospital 30-Day Readmission Prediction
+# Care-Gap Prediction for Chronic Disease Management
 
-**Strategic HealthCare BI Analyst** — *Transforming HealthCare Complexities into Growth Blueprints*
+**Identifying patients likely to miss recommended screenings or follow-ups, to close gaps before they become costly complications.**
 
-Predicts which patients are at high risk of unplanned readmission within
-30 days of discharge, so a hospital's care-management team can target a
-limited-capacity intervention program at the patients who need it most.
+*Strategic HealthCare BI Analyst Portfolio Project — Sohail*
 
-![Project one-pager summary](outputs/one_pager_preview.png)
+## The problem
 
-📄 [View the full one-pager (PDF)](outputs/readmission_one_pager.pdf)
+Chronic disease management runs on guideline-recommended screenings and follow-ups — HbA1c
+tests, diabetic eye and foot exams, nephropathy screening, lipid panels, cardiology and
+pulmonary follow-ups. When a patient misses one, the miss is usually silent until it turns
+into a complication: diabetic retinopathy that could have been caught early, a CKD patient
+who progresses further before the next visit, a heart failure patient re-hospitalized after a
+missed weight/fluid check. A care-management team can only proactively call a fraction of an
+open care-gap registry each cycle — so the real question isn't "who has an open gap," it's
+"who is actually going to miss it if we don't call first."
 
-## Why this matters
+## The approach
 
-Under CMS's Hospital Readmissions Reduction Program (HRRP), hospitals with
-excess 30-day readmissions face payment penalties of up to 3% of total
-Medicare inpatient reimbursement. Beyond the penalty, each avoidable
-readmission costs roughly **$15,000** and represents a real gap in care
-quality. A model that reliably flags high-risk patients at discharge lets
-hospitals target transitional-care resources (follow-up calls, med
-reconciliation, early post-discharge visits) where they'll have the most
-impact.
+A synthetic population of 15,000 chronic disease patients (diabetes, hypertension, CHF, CKD,
+COPD) was built with realistic utilization, adherence, and access features — appointment
+no-show history, medication adherence (proportion of days covered), transportation barriers,
+telehealth enrollment, reminder contact and timing, and distance to clinic. Three models
+(logistic regression, random forest, XGBoost) were trained to predict whether a patient will
+miss their next guideline-due service, with class imbalance handled via class weighting
+rather than resampling to keep predicted probabilities trustworthy for risk-tiering. Models
+were compared on precision at realistic outreach-capacity thresholds (top 10–20% of the
+panel), not just ROC-AUC, since that's what determines whether a limited-capacity outreach
+program actually reaches the right patients. SHAP explanations were layered on top so a care
+coordinator can see *why* a specific patient was flagged.
 
-## Project structure
+## The result
+
+The best model (logistic regression) reached **0.716 ROC-AUC** and **0.583 PR-AUC**, with
+**70% precision in the top 10% highest-risk tier** against a 34.6% base rate — a 2x lift.
+The top SHAP drivers — days since last visit, prior no-show history, reminder staleness,
+number of open care gaps, and medication adherence — are almost entirely operational levers,
+not clinical severity markers, meaning most of this gap is closeable through outreach timing
+and channel rather than requiring a different care plan. Simulating an outreach program
+targeted at just the top 5% highest-risk patients produced the best return of any capacity
+tier tested: **6.40x ROI**, an estimated **$878K in annual net savings** for a 50,000-patient
+chronic disease panel.
+
+| Metric | Value |
+|---|---|
+| Best ROC-AUC (Logistic Regression) | 0.716 |
+| Best PR-AUC | 0.583 |
+| Precision @ top 10% risk tier | 70.0% vs. 34.6% base rate (2x lift) |
+| Best ROI tier | 5% capacity — 6.40x ROI |
+| Est. annual net savings (50K-patient panel, top 5% tier) | $878K |
+
+See `reports/Care_Gap_Prediction_One_Pager.pdf` for the full model comparison, SHAP risk
+drivers, cost/ROI simulation across capacity tiers, key modeling decisions, and honest
+limitations.
+
+## Repository structure
 
 ```
-readmission_project/
+chronic-disease-care-gap-prediction/
+├── README.md
 ├── data/
-│   └── generate_synthetic_data.py   # synthetic EHR data (schema mirrors UCI Diabetes 130-Hospitals)
+│   └── patients.csv                    # 15,000 synthetic chronic disease patients
 ├── src/
-│   ├── feature_engineering.py       # encoding, composite risk features
-│   ├── train_models.py              # LogReg / Random Forest / XGBoost
-│   ├── evaluate.py                  # AUC, PR-AUC, calibration, precision@K
-│   ├── explainability.py            # SHAP global + individual patient
-│   └── cost_impact.py               # $ savings / ROI / CMS penalty framing
-├── outputs/                          # all generated metrics, plots, CSVs
-├── main.py                           # runs the full pipeline end-to-end
-└── README.md
+│   ├── feature_engineering.py          # Encoding, feature construction, train/test split
+│   ├── train_pipeline.py               # Trains and compares the three models
+│   ├── evaluate.py                     # ROC/PR curves, confusion matrix
+│   ├── shap_interactions.py            # SHAP beeswarm + bar chart, feature importance
+│   └── cost_impact.py                  # ROI/net-savings simulation by outreach capacity
+├── scripts/
+│   └── generate_synthetic_data.py      # Synthetic population + label generator
+├── models/
+│   └── best_care_gap_model.joblib      # Best model + test split + predictions
+├── reports/
+│   ├── build_one_pager.py              # Builds the branded PDF one-pager
+│   ├── Care_Gap_Prediction_One_Pager.pdf
+│   ├── figures/                        # ROC/PR curves, confusion matrix, SHAP plots, ROI chart
+│   └── metrics/                        # metrics.json, model comparison, SHAP importances, cost/impact CSVs
 ```
 
-## Quickstart
+## How to run
 
 ```bash
-pip install pandas numpy scikit-learn xgboost shap matplotlib
-python main.py
+cd scripts && python3 generate_synthetic_data.py    # regenerates data/patients.csv
+cd ../src
+python3 train_pipeline.py     # trains + compares models, saves best model
+python3 evaluate.py           # ROC/PR curves + confusion matrix
+python3 shap_interactions.py  # SHAP explainability charts
+python3 cost_impact.py        # ROI simulation by outreach capacity
+cd ../reports && python3 build_one_pager.py   # builds the PDF one-pager
 ```
 
-This runs the full pipeline and writes everything to `outputs/`:
-- `model_comparison_metrics.csv` — AUC, PR-AUC, precision/recall per model
-- `evaluation_curves.png` — ROC, PR, and calibration curves
-- `shap_global_summary.png` — top risk drivers across the population
-- `shap_feature_importance.csv` — ranked feature importance table
-- `shap_individual_patient_example.png` — one patient's risk explained
-- `cost_impact_analysis.csv` — savings/ROI at different intervention capacities
+Requires: `pandas`, `numpy`, `scikit-learn`, `xgboost`, `shap`, `matplotlib`, `reportlab`.
 
-## Using real data instead of the synthetic set
+## Key modeling decisions
 
-This environment can't reach UCI/Kaggle directly, so `data/generate_synthetic_data.py`
-builds a synthetic dataset with the **same schema and realistic feature
-relationships** as the standard public benchmark for this problem — the UCI
-**"Diabetes 130-US Hospitals for Years 1999–2008"** dataset (Strack et al.,
-2014; ~101,766 real encounters, the dataset most portfolio/production
-readmission models are built and validated on).
+- **Precision@K over ROC-AUC alone** — an outreach team can only call a fixed share of the
+  panel each cycle, so precision at the 10–20% capacity threshold reflects what matters
+  operationally: how often the flagged list is actually right.
+- **Target label matches the guideline window exactly** — "missed next service" is defined
+  against each condition's specific guideline window (e.g., annual eye exam, semi-annual
+  HbA1c), not a generic 30/60/90-day cutoff, so the label means what a real care-gap registry
+  would flag.
+- **Class weighting over resampling** — imbalance (34.6% positive rate) was handled via
+  `class_weight="balanced"` rather than synthetic oversampling, to keep predicted
+  probabilities calibrated for risk-tiering.
 
-To swap in the real thing:
-1. Download from [UCI](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008)
-   or [Kaggle](https://www.kaggle.com/datasets/brandao/diabetes)
-2. Rename columns to match `data/generate_synthetic_data.py`'s output schema
-   (or adjust `src/feature_engineering.py`'s column lists to match the raw
-   file's actual column names)
-3. Save as `data/encounters.csv` and re-run `main.py`
+## Honest limitations & next steps
 
-Other good real sources for this problem if you want to extend it:
-- **CMS Medicare claims (SynPUF / research files)** — richer utilization & cost history
-- **Synthea** — fully synthetic but longitudinally realistic EHR generator,
-  useful for simulating a specific patient population (e.g., CHF, COPD cohorts)
-- **MIMIC-IV** (requires credentialed access) — real ICU/hospital data, gold
-  standard for clinical ML research
+Risk-factor directions (no-show history, adherence, reminder timing) reflect published
+care-gap and appointment-adherence literature, but the specific coefficients are illustrative,
+not fit to a real patient population. Before production deployment: validate against an
+actual care-gap registry with a temporal (not random) holdout, confirm the outreach
+relative-risk-reduction assumption (35%) against the specific program's own pilot data, and
+audit for disparate impact across insurance type and language-access subgroups before setting
+enrollment thresholds.
 
-## Modeling approach
+## Data disclaimer
 
-**Three models, escalating complexity:**
-| Model | Role |
-|---|---|
-| Logistic Regression | Interpretable baseline; coefficients directly reviewable by clinical stakeholders |
-| Random Forest | Captures non-linear interactions without heavy tuning |
-| XGBoost | Best PR-AUC in most published readmission studies; used for SHAP explainability |
+All patient data in this project is synthetically generated for portfolio demonstration and
+contains no real patient records.
 
-**Class imbalance** (~19% positive rate here, consistent with real hospital
-readmission rates) is handled via `class_weight="balanced"` / `scale_pos_weight`
-rather than oversampling, to keep predicted probabilities honest for
-risk-stratification rather than distorting them via synthetic resampling.
-
-**Why PR-AUC over ROC-AUC as the primary metric:** with an imbalanced
-outcome, ROC-AUC can look deceptively good while precision at any
-operationally realistic threshold stays low. PR-AUC and precision@top-K%
-are what actually tell you "if we can only intervene on the top 10-20% of
-discharges, how many of the true positives do we catch."
-
-**Realistic performance expectations:** published 30-day readmission models
-(including CMS's own) typically achieve ROC-AUC in the **0.65–0.70** range.
-This isn't a modeling limitation — readmission is driven heavily by factors
-outside the EHR (social determinants, housing, caregiver support, post-discharge
-adherence), so this ceiling is expected and worth calling out explicitly
-rather than over-claiming performance.
-
-## Explainability
-
-SHAP (TreeExplainer on XGBoost) provides:
-- **Global summary** — which features drive risk across the population
-  (typically: prior utilization, discharge disposition, age, admission
-  type — all clinically sensible and literature-consistent)
-- **Individual explanations** — a waterfall plot for any single patient,
-  so a care coordinator can see *why* a specific patient was flagged,
-  not just their risk score. This is the difference between a model that
-  gets used and one that gets ignored by clinical staff.
-
-## Cost / impact framing
-
-`cost_impact.py` converts model performance into a business case:
-- Sweeps intervention capacity (5%–30% of discharges, matching realistic
-  care-management team sizes)
-- Applies a literature-based ~25% relative risk reduction for enrolled
-  high-risk patients (consistent with Coleman Care Transitions
-  Intervention / Project RED RCT results)
-- Reports net savings and ROI per capacity tier, plus an annualized
-  estimate for a representative hospital
-
-All dollar assumptions are parameterized at the top of `cost_impact.py` —
-swap in your hospital's actual per-readmission cost and program cost for
-a real business case.
-
-## Evaluation metrics reported
-
-- ROC-AUC, PR-AUC (average precision)
-- Precision @ top-10% / top-20% risk
-- Precision / Recall / F1 at an operational threshold (top 20% flagged)
-- Calibration curve (are predicted probabilities trustworthy?)
-
-## Next steps for a production version
-
-1. Validate on real claims/EHR data with a proper temporal holdout (train
-   on earlier years, test on later ones — this dataset uses a random split)
-2. Add social determinants of health (SDOH) features if available —
-   consistently the biggest gap between EHR-only models and true ceiling performance
-2. Fairness audit: check calibration and error rates across race/age/gender
-   subgroups before deployment
-3. Threshold selection in partnership with the care-management team based
-   on actual program capacity, not just F1
-4. Monitor for model/data drift — readmission drivers shift with policy,
-   staffing, and population changes
+---
+**Contact:** strategichealthcarebianalyst@gmail.com | [LinkedIn](https://linkedin.com/in/aimms-consulting-35895439) | [Portfolio](https://sohail5993.github.io/Strategic-HealthCare-BI-Analyst/)
