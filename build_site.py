@@ -596,6 +596,30 @@ write_page(
           </div>
         </div>
       </article>
+      
+      <article class="project">
+        <div class="project-rule" style="background:#1E8A8A;"></div>
+        <div class="project-body">
+          <div class="project-head">
+            <span class="tag" style="color:#1E8A8A; border-color:#1E8A8A;">Semantic BI</span>
+            <h3>Star Schema Redesign</h3>
+          </div>
+          <p>
+            Two flat, denormalized datasets — retail order data and a healthcare
+            patient-encounters extract — rebuilt into governed star schemas, with
+            explicit grain, conformed dimensions, and a documented reason behind
+            every modeling choice.
+          </p>
+          <div class="stat-row">
+            <div class="stat"><span class="stat-num">2</span><span class="stat-label">worked examples, retail &amp; healthcare</span></div>
+            <div class="stat"><span class="stat-num">SCD2</span><span class="stat-label">applied selectively, not blanket</span></div>
+            <div class="stat"><span class="stat-num">1</span><span class="stat-label">bridge table for a many-to-many fix</span></div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/star-schema-redesign">View repository</a>
+          </div>
+        </div>
+      </article>
     </section>
     """
 )
