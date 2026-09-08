@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claims Denial &amp; Revenue Cycle Analysis — Dashboard</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Fallback/supplemental styles scoped to this page only — these only fill
+     in gaps if the site's global style.css doesn't already define classes
+     with these names. They won't override your real header/nav/footer. */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+  .kpi-card { background: #f8f9fb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.1rem 1.3rem; }
+  .kpi-value { font-size: 2rem; font-weight: 800; color: #dc2626; line-height: 1.1; }
+  .kpi-value.neutral { color: #1f3a5f; }
+  .kpi-label { font-size: 0.85rem; color: #6b7280; margin-top: 0.35rem; }
+  .chart-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin: 1.25rem 0 2rem; }
+  .chart-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; }
+  .chart-card img { width: 100%; height: auto; display: block; border-radius: 6px; }
+  .section-note { color: #4b5563; font-size: 0.95rem; margin: 0.5rem 0 1rem; }
+  table.rc-table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.92rem; }
+  table.rc-table th, table.rc-table td { border: 1px solid #e5e7eb; padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; }
+  table.rc-table th { background: #f8f9fb; color: #1f3a5f; }
+  .subnav { margin: 0.5rem 0 1.25rem; font-size: 0.95rem; }
+  .subnav a { margin-right: 1.25rem; }
+  .disclaimer { color: #6b7280; font-size: 0.85rem; margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../index.html" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;">
+    <img class="logo" src="../logo.png" alt="Strategic HealthCare BI Analyst logo" style="height:42px;width:auto;">
+    <span class="brand-text">
+      <strong class="site-title" style="display:block;font-size:1.05rem;color:#1f3a5f;">Strategic HealthCare BI Analyst</strong>
+      <small class="tagline" style="display:block;color:#6b7280;">Transforming HealthCare Complexities into Growth Blueprints</small>
+    </span>
+  </a>
+  <nav class="site-nav">
+    <a href="../projects.html">← Back to Projects</a>
+  </nav>
+</header>
+
+<main>
+<h1>Claims Denial &amp; Revenue Cycle Analysis</h1>
+
+<div class="subnav">
+  <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/claims-denial-revenue-cycle-analysis">View repository</a>
+  <a href="tableau/README.md">Tableau build guide</a>
+  <a href="docs/findings.md">Full findings write-up</a>
+</div>
+
+<p>
+Analyzes denial rates by payer, service line, and reason code across 9,000
+claims (Jan 2024–Jun 2025, ~$50.2M billed) to move past "denials are up" and
+into specific, ownable root causes: a payer's prior-authorization policy
+change, a clinical documentation gap in one service line, and a front-desk
+eligibility-verification gap at one facility. Built on a synthetic claims
+dataset with a documented, reproducible generation process (see the data
+dictionary in <code>/docs</code>).
+</p>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-value">15.5%</div>
+    <div class="kpi-label">Denial Rate (target: &lt;10%)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-value">84.5%</div>
+    <div class="kpi-label">Clean Claim Rate (target: 90–95%)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-value neutral">52.0%</div>
+    <div class="kpi-label">Gross Collection Rate (paid ÷ billed)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-value neutral">25.3d</div>
+    <div class="kpi-label">Avg. Turnaround Time (20.5d clean vs. 51.6d denied &amp; reworked)</div>
+  </div>
+</div>
+
+<h3>Where the denials come from: reason code Pareto</h3>
+<p class="section-note">
+Ten reason codes account for every denial in the dataset, but just the top
+four — Missing Information, Medical Necessity, Eligibility, and
+Authorization — drive roughly two-thirds of all denials.
+</p>
+<div class="chart-row">
+  <div class="chart-card"><img src="assets/denial_reason_pareto.png" alt="Denial reason Pareto chart"></div>
+  <div class="chart-card"><img src="assets/denial_rate_trend.png" alt="Denial rate trend by month"></div>
+</div>
+
+<h3>Denial rate by payer, and where payer × service line intersect</h3>
+<p class="section-note">
+Self-Pay and Medicaid run the highest overall denial rates, but the sharpest,
+most actionable signal is in the payer × service line breakdown below —
+Meridian Health Plan's Orthopedics and Oncology cells stand out well above
+every other combination in the grid.
+</p>
+<div class="chart-row">
+  <div class="chart-card"><img src="assets/denial_rate_by_payer.png" alt="Denial rate by payer"></div>
+  <div class="chart-card"><img src="assets/payer_service_line_heatmap.png" alt="Payer by service line denial rate heatmap"></div>
+</div>
+
+<h3>Root cause confirmation</h3>
+<table class="rc-table">
+  <tr><th>Root cause</th><th>Evidence</th><th>Interpretation</th></tr>
+  <tr>
+    <td>Meridian prior-authorization policy change</td>
+    <td>Ortho/Oncology denial rate: 21.4% before 2025-01-01 → 55.9% after; 58% of post-change denials are Authorization (CO-197)</td>
+    <td><strong>Confirmed</strong> — a specific, dated payer policy shift, not a general quality drop</td>
+  </tr>
+  <tr>
+    <td>Behavioral Health documentation gap</td>
+    <td>Highest service-line denial rate (20.0%); 44.9% of its denials are Medical Necessity (CO-50), roughly 2x other service lines</td>
+    <td><strong>Confirmed</strong> — a clinical documentation issue, not a billing issue</td>
+  </tr>
+  <tr>
+    <td>East Medical Center eligibility gap</td>
+    <td>Highest facility denial rate (19.6% vs. 15.2% at Main Campus); 46.0% of its denials are Eligibility-related vs. 20.7% elsewhere</td>
+    <td><strong>Confirmed</strong> — a front-desk registration/verification issue, cheapest category to fix</td>
+  </tr>
+</table>
+
+<div class="chart-row">
+  <div class="chart-card"><img src="assets/meridian_root_cause.png" alt="Meridian before vs after policy change denial rate"></div>
+  <div class="chart-card"><img src="assets/facility_eligibility_gap.png" alt="Facility eligibility denial gap"></div>
+</div>
+
+<h3>Cost of denials: turnaround time &amp; revenue impact</h3>
+<p class="section-note">
+Denied-and-reworked claims take 2.5x longer to resolve than clean claims —
+that's cash sitting in A/R, not just a quality metric.
+</p>
+<div class="chart-row">
+  <div class="chart-card"><img src="assets/turnaround_comparison.png" alt="Turnaround time clean vs denied"></div>
+  <div class="chart-card" style="display:flex;align-items:center;">
+    <table class="rc-table" style="margin:0;">
+      <tr><th colspan="2">Revenue at risk</th></tr>
+      <tr><td>Billed charges denied on first pass</td><td>$8.24M</td></tr>
+      <tr><td>Billed charges permanently written off</td><td>$6.20M</td></tr>
+      <tr><td>Billed charges pending appeal</td><td>$225K</td></tr>
+      <tr><td>Est. recoverable via Meridian pre-auth fix</td><td>~$250K</td></tr>
+    </table>
+  </div>
+</div>
+
+<h3>Opportunity sizing — cut each category's denials in half</h3>
+<table class="rc-table">
+  <tr><th>Denial category</th><th>Denied claims</th><th>Billed $ at risk</th><th>Est. $ recovered if halved</th></tr>
+  <tr><td>Eligibility</td><td>340</td><td>$2.13M</td><td>~$692K</td></tr>
+  <tr><td>Missing Information</td><td>274</td><td>$1.57M</td><td>~$509K</td></tr>
+  <tr><td>Medical Necessity</td><td>212</td><td>$1.02M</td><td>~$332K</td></tr>
+  <tr><td>Timely Filing</td><td>157</td><td>$956K</td><td><em>Not appeal-recoverable — fix at submission stage</em></td></tr>
+</table>
+
+<h3>Recommendations</h3>
+<ol>
+  <li><strong>Get Meridian's updated prior-authorization policy in writing</strong> and build a pre-submission auth checklist specifically for Orthopedics and Oncology claims going to that payer.</li>
+  <li><strong>Partner with Behavioral Health clinical leadership on documentation templates</strong> that pre-empt medical-necessity criteria — this is a clinical fix, not a billing-team fix.</li>
+  <li><strong>Audit East Medical Center's front-desk eligibility verification workflow</strong> — typically the cheapest denial category to fix, since it's process/training rather than a systems change.</li>
+  <li><strong>Stop appealing Timely Filing and Duplicate Claim denials</strong> (1.3% and 4.4% ultimate recovery rate); redirect that staff time upstream to submission-deadline alerts instead.</li>
+</ol>
+
+<p class="disclaimer">
+Synthetic data, generated with a fixed random seed and documented root causes
+(see <code>docs/data_dictionary.md</code>). Not derived from any real
+hospital's, payer's, or patient's records.
+</p>
+
+</main>
+
+<footer>
+  <p>Strategic HealthCare BI Analyst</p>
+</footer>
+
+</body>
+</html>
