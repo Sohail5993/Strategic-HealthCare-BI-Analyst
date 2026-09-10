@@ -215,8 +215,45 @@
         <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ed-throughput-analysis">View repository</a>
         <a href="ed-throughput-analysis/dashboard.html">View live dashboard</a>
       </div>
-    </section><section class="cs-placeholder wrap">
+    </section>
+        <section class="case-study wrap" id="ehr-patient-outcomes">
+      <div class="cs-tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</div>
+      <h2>Electronic Health Records (EHR) / Patient Outcomes Analysis</h2>
 
+      <h3>The problem</h3>
+      <p>
+        Most healthcare analyst roles start here: a raw EHR extract that's genuinely messy —
+        inconsistent formatting, missing values, duplicate records, mixed date formats from
+        merged source systems — before any of the interesting demographic, diagnosis, or
+        cost-driver analysis can happen. A limited-capacity care-management team needed a
+        concrete answer to who to call first, not just a clean dataset.
+      </p>
+
+      <h3>The approach</h3>
+      <p>
+        A synthetic 8,323-encounter dataset was built with realistic clinical data-quality
+        problems on purpose — 10 different gender formattings, 3 mixed date formats, impossible
+        ages and lengths of stay, duplicate records — then cleaned with every decision logged to
+        an audit trail rather than applied silently. The cleaned data was analyzed for cost
+        drivers (ANOVA, linear regression) and length-of-stay patterns by comorbidity burden
+        (Kruskal-Wallis), then used to define a rule-based cohort of high-cost, high-complexity
+        patients.
+      </p>
+
+      <h3>The result</h3>
+      <p>
+        Just 3.7% of patients (149 people) account for 25% of total spend, and that same cohort
+        carries a 47% 30-day readmission rate versus 22.5% for everyone else — more than double
+        the risk. Length of stay turned out to be the dominant cost lever (+$3,539 per additional
+        day), with comorbidity count driving cost mainly indirectly, through its effect on length
+        of stay rather than as an independent factor.
+      </p>
+
+      <div class="cs-links">
+        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ehr-patient-outcomes">View repository</a>
+        <a href="ehr-patient-outcomes/dashboard.html">View live dashboard</a>
+      </div>
+    </section>
       <section class="case-study wrap" id="claims-denial-revenue-cycle">
   <div class="cs-tag" style="color:#7C3AED; border-color:#7C3AED;">Revenue Cycle</div>
   <h2>Claims Denial &amp; Revenue Cycle Analysis</h2>

@@ -1,0 +1,10 @@
+step,detail,rows_affected
+Deduplication,Dropped rows with duplicate encounter_id (kept first occurrence),123
+Gender standardization,Mapped 10 raw variants (M/Male/m/MALE/'Male '/F/Female/f/FEMALE/' Female') to M/F,6403
+Gender missingness,Left missing gender as null rather than imputing a guessed value,260
+Date standardization,Parsed 3 mixed date formats (ISO / MM-DD-YYYY / DD-Mon-YYYY) into a single datetime type,8200
+Age validation,Nulled impossible ages (<=0 or >110) rather than guessing a replacement,77
+Length-of-stay validation,"Nulled impossible LOS values (<0 or >90 days, e.g. entry errors like 999 or -2)",52
+Cost outlier flagging,"Flagged (not removed) costs > 3x the 99th percentile ($478,899) as likely billing errors for analyst review",27
+Missing diagnosis code,"Retained rows with missing diagnosis code, flagged for downstream exclusion from diagnosis-specific analysis",125
+Missing cost,"Retained rows with missing cost, excluded from cost-driver analysis only",325
