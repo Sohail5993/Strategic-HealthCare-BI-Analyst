@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Department Throughput Bottleneck Analysis — Strategic HealthCare BI Analyst</title>
+<meta name="description" content="Traces where patients lose time between arrival and physician contact, and simulates staffing changes against a limited budget.">
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="../index.html" class="brand-link">
+        <img src="../assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="brand-mark">
+        <div class="brand-block">
+          <span class="brand-name">Strategic HealthCare BI Analyst</span>
+          <span class="brand-tagline">Transforming HealthCare Complexities into Growth Blueprints</span>
+        </div>
+      </a>
+    </div>
+    <nav class="site-nav">
+      <div class="wrap nav-inner">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../about.html" class="nav-link">About</a>
+        <a href="../approach.html" class="nav-link">Approach</a>
+        <a href="../certifications.html" class="nav-link">Certifications</a>
+        <a href="../projects.html" class="nav-link active">Projects</a>
+        <a href="../case-studies.html" class="nav-link">Case Studies</a>
+        <a href="../blog.html" class="nav-link">Blog</a>
+        <a href="../contact.html" class="nav-link">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header wrap">
+      <a href="../projects.html" class="back-link">← All Projects</a>
+      <div class="cs-tag" style="color:#1B4F72; border-color:#1B4F72;">Access &amp; Network</div>
+      <h1>Emergency Department Throughput Bottleneck Analysis</h1>
+    </section>
+
+    <section class="case-study wrap">
+      <h3>The problem</h3>
+      <p>
+        A mid-size community ED was losing patients to left-without-being-seen (LWBS) and
+        running average door-to-provider times well above published benchmarks, concentrated
+        in a specific shift. Leadership had budget for one additional staff position and
+        needed evidence for where to put it — more triage nurses, more beds, or more
+        physician coverage — rather than a generic "hire more people" recommendation.
+      </p>
+
+      <h3>The approach</h3>
+      <p>
+        A synthetic year of ED encounters (~20,000 visits) was built with realistic arrival
+        seasonality, ESI acuity mix, and shift-dependent staffing, then analyzed in SQL to
+        break door-to-provider time into its three stages — door-to-triage, triage-to-room,
+        room-to-physician — by shift. A queueing-utilization pass and Kruskal-Wallis/Tukey
+        HSD/chi-square testing confirmed which resource was actually saturated, rather than
+        assuming. A discrete-event simulation (SimPy) then modeled the ED as a three-stage
+        queueing network and tested a specific staffing intervention across 20 replications
+        for statistical confidence.
+      </p>
+
+      <h3>The result</h3>
+      <p>
+        Physician capacity — not beds or triage nursing — was the binding constraint on the
+        Evening shift (utilization ρ = 0.82 vs. 0.14 for beds), confirmed statistically
+        (Kruskal-Wallis p &lt; 0.001). Adding one physician-equivalent (an advanced practice
+        provider) to that shift alone reduced average door-to-provider time by 20.7% (74.3 →
+        59.0 min) and cut the LWBS rate by 59.7% relative (3.98% → 1.60%), with non-overlapping
+        95% confidence intervals between baseline and scenario. Net of the added staffing
+        cost, the simulated fix recovers an estimated $565.8K in annual revenue at a
+        20,000-visit ED.
+      </p>
+
+      <div class="cs-links">
+        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ed-throughput-analysis">View repository</a>
+        <a href="../ed-throughput-analysis/dashboard.html">View live dashboard</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <div class="footer-row">
+      <span>Strategic HealthCare BI Analyst</span>
+      <div class="footer-links">
+        <a href="mailto:strategichealthcarebianalyst@gmail.com">Email</a>
+        <a href="tel:+923004984892">Phone</a>
+        <a href="https://www.linkedin.com/in/aimms-consulting-35895439">LinkedIn</a>
+        <a href="https://github.com/sohail5993">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
