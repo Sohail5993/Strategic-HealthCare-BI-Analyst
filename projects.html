@@ -41,182 +41,64 @@
 
     <section class="page-header wrap">
       <h1>Projects</h1>
+      <p class="lede">Seven healthcare data &amp; analytics projects, start to finish. Scroll across, then click into the one you want to see in full.</p>
     </section>
 
-    <section class="projects wrap">
-      <article class="project">
-        <div class="project-rule" style="background:#0F5C5C;"></div>
-        <div class="project-body">
-          <div class="project-head">
-            <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
-            <h3>Hospital 30-Day Readmission Prediction</h3>
-          </div>
-          <p>
-            Predicts which patients are likely to be readmitted within 30 days of discharge,
-            so a care-management team can target a limited-capacity intervention program at
-            the patients who need it most — rather than spreading it thin across everyone.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-num">0.67</span><span class="stat-label">ROC-AUC, in line with published readmission models</span></div>
-            <div class="stat"><span class="stat-num">2x</span><span class="stat-label">precision lift in the top 10% risk tier</span></div>
-            <div class="stat"><span class="stat-num">$918K</span><span class="stat-label">est. annual net savings at a 20K-discharge hospital</span></div>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/hospital-readmission-prediction">View repository</a>
-            <a href="case-studies.html">Read the case study</a>
-          </div>
-        </div>
-      </article>
+    <p class="scroll-hint">Scroll horizontally →</p>
 
-      <article class="project">
-        <div class="project-rule" style="background:#C96F14;"></div>
-        <div class="project-body">
-          <div class="project-head">
-            <span class="tag" style="color:#C96F14; border-color:#C96F14;">Access &amp; Network</span>
-            <h3>Provider Network Adequacy Analysis</h3>
-          </div>
-          <p>
-            Evaluates whether a payer's provider network meets access standards across
-            specialty, distance, and wait-time thresholds — and finds a network that looks
-            adequate on paper but isn't adequate in practice.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-num">78.3%</span><span class="stat-label">members fully compliant, all 3 standards</span></div>
-            <div class="stat"><span class="stat-num">99.7%</span><span class="stat-label">distance compliance</span></div>
-            <div class="stat"><span class="stat-num">78.6%</span><span class="stat-label">wait-time compliance — the binding constraint</span></div>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst">View repository</a>
-            <a href="case-studies.html#provider-network-adequacy">Read the case study</a>
-          </div>
-        </div>
-      </article>
+    <section class="project-grid">
 
-      <article class="project">
-        <div class="project-rule" style="background:#6C3483;"></div>
-        <div class="project-body">
-          <div class="project-head">
-            <span class="tag" style="color:#6C3483; border-color:#6C3483;">Chronic Disease</span>
-            <h3>Care-Gap Prediction for Chronic Disease Management</h3>
-          </div>
-          <p>
-            Identifies which chronic disease patients are likely to miss their next
-            guideline-recommended screening or follow-up, so a limited-capacity outreach
-            team knows who to call first — before a missed gap becomes a costly complication.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-num">0.716</span><span class="stat-label">ROC-AUC, in line with published care-gap models</span></div>
-            <div class="stat"><span class="stat-num">2x</span><span class="stat-label">precision lift in the top 10% risk tier</span></div>
-            <div class="stat"><span class="stat-num">$878K</span><span class="stat-label">est. annual net savings at a 50K-patient panel</span></div>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst">View repository</a>
-            <a href="case-studies.html#care-gap-prediction">Read the case study</a>
-          </div>
-        </div>
-      </article>
+      <a href="projects/hospital-readmission-prediction.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Hospital 30-Day Readmission Prediction</h3>
+        <p>Predicts which discharged patients are likely to be readmitted, so a limited-capacity care team knows who to call first.</p>
+        <span class="card-cta">View project →</span>
+      </a>
 
-      <article class="project">
-        <div class="project-rule" style="background:#1E8A8A;"></div>
-        <div class="project-body">
-          <div class="project-head">
-            <span class="tag" style="color:#1E8A8A; border-color:#1E8A8A;">Semantic BI</span>
-            <h3>Star Schema Redesign</h3>
-          </div>
-          <p>
-            Two flat, denormalized datasets — retail order data and a healthcare
-            patient-encounters extract — rebuilt into governed star schemas, with
-            explicit grain, conformed dimensions, and a documented reason behind
-            every modeling choice.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-num">2</span><span class="stat-label">worked examples, retail &amp; healthcare</span></div>
-            <div class="stat"><span class="stat-num">SCD2</span><span class="stat-label">applied selectively, not blanket</span></div>
-            <div class="stat"><span class="stat-num">1</span><span class="stat-label">bridge table for a many-to-many fix</span></div>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/star-schema-redesign">View repository</a>
-          </div>
-        </div>
-      </article>
-            <article class="project">
-        <div class="project-rule" style="background:#1B4F72;"></div>
-        <div class="project-body">
-          <div class="project-head">
-            <span class="tag" style="color:#1B4F72; border-color:#1B4F72;">Access &amp; Network</span>
-            <h3>Emergency Department Throughput Bottleneck Analysis</h3>
-          </div>
-          <p>
-            Traces where patients lose time between arrival and physician contact —
-            door-to-triage, triage-to-room, room-to-physician — and simulates staffing
-            changes against a limited budget to find the shift where one added provider
-            cuts wait time the most, rather than spreading headcount thin across every hour.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-num">-20.7%</span><span class="stat-label">avg door-to-provider time, reduced by simulation</span></div>
-            <div class="stat"><span class="stat-num">-59.7%</span><span class="stat-label">relative LWBS rate reduction under recommended staffing</span></div>
-            <div class="stat"><span class="stat-num">$565.8K</span><span class="stat-label">est. annual net benefit at a 20K-visit ED</span></div>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ed-throughput-analysis">View repository</a>
-            <a href="ed-throughput-analysis/dashboard.html">View live dashboard</a>
-            <a href="case-studies.html#ed-throughput-bottleneck">Read the case study</a>
-          </div>
-        </div>
-      </article>
-      </div>
-            <article class="project">
-        <div class="project-rule" style="background:#0F5C5C;"></div>
-        <div class="project-body">
-          <div class="project-head">
-            <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
-            <h3>Electronic Health Records (EHR) / Patient Outcomes Analysis</h3>
-          </div>
-          <p>
-            Explores patterns across demographics, diagnoses, procedures, and outcomes in a
-            synthetic ~8,200-encounter EHR extract — cleaning a genuinely messy clinical dataset
-            first, then identifying which patients are driving disproportionate cost and
-            readmission risk, so a care-management team knows exactly who to call.
-          </p>
-          <div class="stat-row">
-            <div class="stat"><span class="stat-num">25%</span><span class="stat-label">of total spend comes from just 3.7% of patients</span></div>
-            <div class="stat"><span class="stat-num">2.1x</span><span class="stat-label">higher 30-day readmission rate in that cohort</span></div>
-            <div class="stat"><span class="stat-num">149</span><span class="stat-label">patients identified for targeted care-management outreach</span></div>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ehr-patient-outcomes">View repository</a>
-            <a href="ehr-patient-outcomes/dashboard.html">View live dashboard</a>
-            <a href="case-studies.html#ehr-patient-outcomes">Read the case study</a>
-          </div>        
-      </article>
-      <article class="project">
-  <div class="project-rule" style="background:#7C3AED;"></div>
-  <div class="project-body">
-    <div class="project-head">
-      <span class="tag" style="color:#7C3AED; border-color:#7C3AED;">Revenue Cycle</span>
-      <h3>Claims Denial &amp; Revenue Cycle Analysis</h3>
-    </div>
-    <p>
-      Analyzes denial rates by payer, service line, and reason code across 9,000
-      claims to find specific, ownable root causes — a payer's prior-authorization
-      policy change, a clinical documentation gap in one service line, and a
-      front-desk eligibility-verification gap at one facility — rather than
-      leaving it as a generic "denials are up."
-    </p>
-    <div class="stat-row">
-      <div class="stat"><span class="stat-num">15.5%</span><span class="stat-label">denial rate, well above the &lt;10% industry target</span></div>
-      <div class="stat"><span class="stat-num">84.5%</span><span class="stat-label">clean claim rate, below the 90–95% industry target</span></div>
-      <div class="stat"><span class="stat-num">$8.24M</span><span class="stat-label">billed charges denied on first submission</span></div>
-    </div>
-    <div class="project-links">
-      <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/claims-denial-revenue-cycle-analysis">View repository</a>
-      <a href="claims-denial-revenue-cycle-analysis/dashboard.html">View live dashboard</a>
-      <a href="case-studies.html#claims-denial-revenue-cycle">Read the case study</a>
-    </div>
-  </div>
-</article>
+      <a href="projects/provider-network-adequacy.html" class="project-card" style="--card-color:#C96F14;">
+        <span class="tag" style="color:#C96F14; border-color:#C96F14;">Access &amp; Network</span>
+        <h3>Provider Network Adequacy Analysis</h3>
+        <p>Tests a payer's network against distance, wait-time, and ratio standards — and finds where it's adequate on paper but not in practice.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/care-gap-prediction.html" class="project-card" style="--card-color:#6C3483;">
+        <span class="tag" style="color:#6C3483; border-color:#6C3483;">Chronic Disease</span>
+        <h3>Care-Gap Prediction for Chronic Disease Management</h3>
+        <p>Flags which chronic disease patients will likely miss their next screening or follow-up, before it becomes a costly complication.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/star-schema-redesign.html" class="project-card" style="--card-color:#1E8A8A;">
+        <span class="tag" style="color:#1E8A8A; border-color:#1E8A8A;">Semantic BI</span>
+        <h3>Star Schema Redesign</h3>
+        <p>Two flat, denormalized datasets rebuilt into governed star schemas — with explicit grain and a documented reason behind every choice.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/ed-throughput-bottleneck.html" class="project-card" style="--card-color:#1B4F72;">
+        <span class="tag" style="color:#1B4F72; border-color:#1B4F72;">Access &amp; Network</span>
+        <h3>Emergency Department Throughput Bottleneck Analysis</h3>
+        <p>Traces where ED patients lose time, then simulates where one added provider cuts wait time the most.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/ehr-patient-outcomes.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Electronic Health Records (EHR) / Patient Outcomes Analysis</h3>
+        <p>Cleans a genuinely messy EHR extract, then finds which patients are driving disproportionate cost and readmission risk.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/claims-denial-revenue-cycle.html" class="project-card" style="--card-color:#7C3AED;">
+        <span class="tag" style="color:#7C3AED; border-color:#7C3AED;">Revenue Cycle</span>
+        <h3>Claims Denial &amp; Revenue Cycle Analysis</h3>
+        <p>Finds the specific, ownable root causes behind an elevated denial rate — not just "denials are up."</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
     </section>
-  
+
   </main>
 
   <footer class="site-footer wrap">
