@@ -408,6 +408,7 @@ section h2 {
 /* ---- Footer ---- */
 .site-footer {
   border-top: 1px solid var(--rule);
+  
   padding: 28px 24px 40px;
 }
 .footer-row {
@@ -427,6 +428,7 @@ section h2 {
 }
 .footer-links a { margin-right: 20px; }
 .footer-links a:last-child { margin-right: 0; }
+
 .footer-links a {
   color: var(--teal);
   font-size: 13.5px;
@@ -465,4 +467,28 @@ p {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
+}
+
+/* ---- Headline Finding Callout ---- */
+.headline-finding {
+  background: #1f2a44;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin: 1.5rem 0;
+}
+
+.headline-finding strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.headline-finding p {
+  margin: 0;
+  line-height: 1.5;
+  color: #e5e9f0;
 }
