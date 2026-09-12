@@ -112,6 +112,41 @@ h1, h2, h3 {
   max-width: 58ch;
 }
 
+/* ---- Page header row (Projects page: title + pagination) ---- */
+.page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.page-header-text { flex: 1 1 320px; }
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.pagination button {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.pagination button:hover { border-color: var(--teal); color: var(--teal); }
+.pagination button.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
 /* ---- Prose (About, Blog) ---- */
 .prose { padding: 8px 24px 80px; }
 .prose p {
@@ -408,7 +443,6 @@ section h2 {
 /* ---- Footer ---- */
 .site-footer {
   border-top: 1px solid var(--rule);
-  
   padding: 28px 24px 40px;
 }
 .footer-row {
@@ -493,7 +527,7 @@ p {
   color: #e5e9f0;
 }
 
-/* ---- Project Grid (horizontal landing strip) ---- */
+/* ---- Project Grid (wrapping grid, no horizontal scroll) ---- */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -503,42 +537,7 @@ p {
   padding: 20px 24px 40px;
 }
 
-.page-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.page-header-text { flex: 1 1 320px; }
-
-.pagination {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-.pagination button {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--rule);
-  background: #fff;
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.pagination button:hover { border-color: var(--teal); color: var(--teal); }
-.pagination button.active {
-  background: var(--teal);
-  border-color: var(--teal);
-  color: #fff;
-}
-@media (max-width: 600px) {
-  .project-card { flex: 0 0 220px; }
-}
+.project-card {
   display: flex;
   flex-direction: column;
   background: #FFFFFF;
@@ -576,8 +575,26 @@ p {
 }
 .project-card:hover .card-cta { text-decoration: underline; }
 
-@media (max-width: 600px) {
-  .project-card { flex: 0 0 220px; }
+/* ---- Coming-soon project cards ---- */
+.project-card.coming-soon-card {
+  cursor: default;
+  opacity: 0.65;
+  border-left-style: dashed;
+}
+.project-card.coming-soon-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+.project-card .tag.coming-soon-tag {
+  background: transparent;
+  color: var(--muted) !important;
+  border-color: var(--rule) !important;
+}
+.project-card .coming-soon-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  font-style: italic;
 }
 
 /* ---- Project detail pages ---- */
