@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Case Studies — Strategic HealthCare BI Analyst</title>
-<meta name="description" content="In-depth case studies: the business problem, the approach, and the measurable outcome.">
+<meta name="description" content="Healthcare data science and analytics case studies — problem, approach, and outcome for each engagement.">
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,289 +40,127 @@
   <main>
 
     <section class="page-header wrap">
-      <h1>Case Studies</h1>
-      <p class="lede">Case studies go deeper than the project list — walking through the business problem, the approach, and the measurable outcome.</p>
-    </section>
-
-    <section class="case-study wrap">
-      <div class="cs-tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</div>
-      <h2>Hospital 30-Day Readmission Prediction</h2>
-
-      <h3>The problem</h3>
-      <p>
-        Under CMS's Hospital Readmissions Reduction Program, hospitals with excess 30-day
-        readmissions face payment penalties of up to 3% of total Medicare inpatient
-        reimbursement — on top of the roughly $15,000 each avoidable readmission costs
-        outright. Care-management teams have enough capacity to actively manage a fraction
-        of discharged patients, so the real question isn't "who might be readmitted" —
-        it's "who should we call first."
-      </p>
-
-      <h3>The approach</h3>
-      <p>
-        Three models — logistic regression, random forest, and XGBoost — were trained on
-        encounter-level clinical and demographic features, with class imbalance handled via
-        weighting rather than resampling to keep predicted probabilities trustworthy for
-        risk-stratification. Models were compared on precision at realistic staffing
-        thresholds (top 10–20% of discharges), not just ROC-AUC, since that's what
-        determines whether a limited-capacity program actually catches the right patients.
-        SHAP explanations were layered on top so a care coordinator can see <em>why</em> a
-        specific patient was flagged, not just their score.
-      </p>
-
-      <h3>The result</h3>
-      <p>
-        The best model reached 0.67 ROC-AUC — in line with published readmission models,
-        including CMS's own — and delivered 2x the baseline precision in the top 10% risk
-        tier. Simulating a transitional-care program targeted at just the top 5% highest-risk
-        discharges produced the best return of any capacity tier tested: 1.84x ROI, an
-        estimated $918K in annual net savings for a 20,000-discharge hospital.
-      </p>
-
-      <div class="cs-links">
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/hospital-readmission-prediction">View repository</a>
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/blob/main/hospital-readmission-prediction/reports/readmission_one_pager.pdf">View one-pager</a>
+      <div class="page-header-row">
+        <div class="page-header-text">
+          <h1>Case Studies</h1>
+          <p class="lede">Six healthcare engagements, each broken down by problem, approach, and outcome — plus a few more in the works.</p>
+        </div>
+        <nav class="pagination" id="pagination" aria-label="Case study pages"></nav>
       </div>
     </section>
 
-    <section class="case-study wrap" id="provider-network-adequacy">
-      <div class="cs-tag" style="color:#C96F14; border-color:#C96F14;">Access &amp; Network</div>
-      <h2>Provider Network Adequacy Analysis</h2>
+    <section class="project-grid" id="caseStudyGrid">
 
-      <h3>The problem</h3>
-      <p>
-        Health plans are required — by CMS Medicare Advantage rules, state Medicaid
-        contracts, and NCQA accreditation — to prove their provider networks give members
-        reasonable access to care, typically measured across three dimensions: distance to
-        the nearest provider, appointment wait time, and provider-to-member ratio. Failing
-        any of these risks regulatory penalties and corrective action plans — but the
-        deeper risk is members who technically have a network but can't actually get seen.
-      </p>
+      <a href="case-studies/hospital-readmission-prediction.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Hospital 30-Day Readmission Prediction</h3>
+        <p>How a limited-capacity care team went from guessing who to call first to acting on a ranked, evidence-backed readmission-risk list.</p>
+        <span class="card-cta">View case study →</span>
+      </a>
 
-      <h3>The approach</h3>
-      <p>
-        A synthetic regional network of 672 providers across 10 specialties and 48,000
-        members across 8 counties (urban, suburban, and rural) was tested against a
-        benchmark table modeled on CMS Medicare Advantage Time &amp; Distance criteria and
-        state Medicaid MCO wait-time standards. For a stratified member sample, haversine
-        distance to the nearest accepting in-network provider, next-available-appointment
-        wait time, and provider-to-member ratio were each checked against their standard,
-        then rolled up into a gap score ranking every county-by-specialty combination by
-        severity.
-      </p>
+      <a href="case-studies/provider-network-adequacy.html" class="project-card" style="--card-color:#C96F14;">
+        <span class="tag" style="color:#C96F14; border-color:#C96F14;">Access &amp; Network</span>
+        <h3>Provider Network Adequacy Analysis</h3>
+        <p>Testing a payer's network against distance, wait-time, and ratio standards to find where "adequate on paper" broke down in practice.</p>
+        <span class="card-cta">View case study →</span>
+      </a>
 
-      <h3>The result</h3>
-      <p>
-        The network passes distance (99.7%) and provider-ratio (100%) standards almost
-        everywhere — but appointment wait-time compliance falls to 78.6%, driven by
-        Neurology and Behavioral Health backlogs of 22–46 days. Headcount on the roster
-        isn't the same as capacity a member can actually access. A second, counterintuitive
-        finding: suburban compliance (70.5%) is worse than rural (85.7%), because dense
-        suburban demand overwhelms a thin specialist panel more than sparse rural demand
-        does — a pattern that urban/suburban/rural bucketing alone would miss.
-      </p>
+      <a href="case-studies/care-gap-prediction.html" class="project-card" style="--card-color:#6C3483;">
+        <span class="tag" style="color:#6C3483; border-color:#6C3483;">Chronic Disease</span>
+        <h3>Care-Gap Prediction for Chronic Disease Management</h3>
+        <p>Flagging chronic disease patients at risk of missing their next screening or follow-up, before a gap in care became a costly complication.</p>
+        <span class="card-cta">View case study →</span>
+      </a>
 
-      <div class="cs-links">
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst">View repository</a>
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/blob/main/outputs/Provider_Network_Adequacy_One_Pager.pdf">View one-pager</a>
+      <a href="case-studies/ed-throughput-bottleneck.html" class="project-card" style="--card-color:#1B4F72;">
+        <span class="tag" style="color:#1B4F72; border-color:#1B4F72;">Access &amp; Network</span>
+        <h3>Emergency Department Throughput Bottleneck Analysis</h3>
+        <p>Tracing exactly where ED patients lost the most time, then simulating where one added provider would cut wait time the most.</p>
+        <span class="card-cta">View case study →</span>
+      </a>
+
+      <a href="case-studies/ehr-patient-outcomes.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Electronic Health Records (EHR) / Patient Outcomes Analysis</h3>
+        <p>Cleaning a genuinely messy EHR extract to surface which patients were driving disproportionate cost and readmission risk.</p>
+        <span class="card-cta">View case study →</span>
+      </a>
+
+      <a href="case-studies/claims-denial-revenue-cycle.html" class="project-card" style="--card-color:#7C3AED;">
+        <span class="tag" style="color:#7C3AED; border-color:#7C3AED;">Revenue Cycle</span>
+        <h3>Claims Denial &amp; Revenue Cycle Analysis</h3>
+        <p>Tracking down the specific, ownable root causes behind an elevated denial rate — not just the observation that "denials are up."</p>
+        <span class="card-cta">View case study →</span>
+      </a>
+
+      <div class="project-card coming-soon-card" style="--card-color:#9AA5AD;">
+        <span class="tag coming-soon-tag">Predictive Analytics</span>
+        <h3>Patient No-Show Prediction Model</h3>
+        <p>The case study behind the no-show prediction project — how clinics could move from guessing to strategic double-booking.</p>
+        <span class="coming-soon-label">Coming soon</span>
       </div>
-    </section>
 
-    <section class="case-study wrap" id="care-gap-prediction">
-      <div class="cs-tag" style="color:#6C3483; border-color:#6C3483;">Chronic Disease</div>
-      <h2>Care-Gap Prediction for Chronic Disease Management</h2>
-
-      <h3>The problem</h3>
-      <p>
-        Chronic disease management runs on guideline-recommended screenings and follow-ups —
-        HbA1c tests, diabetic eye and foot exams, nephropathy screening, cardiology and
-        pulmonary follow-ups. When a patient misses one, the miss is usually silent until it
-        turns into a complication: retinopathy that could have been caught early, a CKD
-        patient who progresses further before the next visit, a heart failure readmission
-        after a missed weight check. A care-management team can only proactively call a
-        fraction of an open care-gap registry each cycle, so the real question isn't who has
-        an open gap — it's who will actually miss it if nobody calls first.
-      </p>
-
-      <h3>The approach</h3>
-      <p>
-        A synthetic population of 15,000 chronic disease patients (diabetes, hypertension,
-        CHF, CKD, COPD) was built with realistic utilization, adherence, and access features —
-        appointment no-show history, medication adherence, transportation barriers, telehealth
-        enrollment, and reminder timing. Three models (logistic regression, random forest,
-        XGBoost) were trained to predict whether a patient will miss their next guideline-due
-        service, compared on precision at realistic outreach-capacity thresholds rather than
-        ROC-AUC alone, with SHAP layered on top so a care coordinator can see why a specific
-        patient was flagged.
-      </p>
-
-      <h3>The result</h3>
-      <p>
-        The best model reached 0.716 ROC-AUC and delivered 70% precision in the top 10% risk
-        tier against a 34.6% base rate — a 2x lift. The top SHAP drivers &mdash; days since
-        last visit, prior no-show history, reminder staleness, and medication adherence &mdash;
-        are almost entirely operational levers, not clinical severity markers, meaning most of
-        this gap is closeable through outreach timing rather than a different care plan.
-        Targeting just the top 5% highest-risk patients produced the best return of any
-        capacity tier tested: 6.40x ROI, an estimated $878K in annual net savings for a
-        50,000-patient chronic disease panel.
-      </p>
-
-      <div class="cs-links">
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst">View repository</a>
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/blob/main/reports/Care_Gap_Prediction_One_Pager.pdf">View one-pager</a>
+      <div class="project-card coming-soon-card" style="--card-color:#9AA5AD;">
+        <span class="tag coming-soon-tag">Cost &amp; Quality</span>
+        <h3>Length-of-Stay Outlier Analysis</h3>
+        <p>The case study behind the length-of-stay project — which units and diagnosis groups drove abnormal outliers, and why.</p>
+        <span class="coming-soon-label">Coming soon</span>
       </div>
+
     </section>
 
-    <section class="case-study wrap" id="ed-throughput-bottleneck">
-      <div class="cs-tag" style="color:#1B4F72; border-color:#1B4F72;">Access &amp; Network</div>
-      <h2>Emergency Department Throughput Bottleneck Analysis</h2>
-
-      <h3>The problem</h3>
-      <p>
-        A mid-size community ED was losing patients to left-without-being-seen (LWBS) and
-        running average door-to-provider times well above published benchmarks, concentrated
-        in a specific shift. Leadership had budget for one additional staff position and
-        needed evidence for where to put it — more triage nurses, more beds, or more
-        physician coverage — rather than a generic "hire more people" recommendation.
-      </p>
-
-      <h3>The approach</h3>
-      <p>
-        A synthetic year of ED encounters (~20,000 visits) was built with realistic arrival
-        seasonality, ESI acuity mix, and shift-dependent staffing, then analyzed in SQL to
-        break door-to-provider time into its three stages — door-to-triage, triage-to-room,
-        room-to-physician — by shift. A queueing-utilization pass and Kruskal-Wallis/Tukey
-        HSD/chi-square testing confirmed which resource was actually saturated, rather than
-        assuming. A discrete-event simulation (SimPy) then modeled the ED as a three-stage
-        queueing network and tested a specific staffing intervention across 20 replications
-        for statistical confidence.
-      </p>
-
-      <h3>The result</h3>
-      <p>
-        Physician capacity — not beds or triage nursing — was the binding constraint on the
-        Evening shift (utilization ρ = 0.82 vs. 0.14 for beds), confirmed statistically
-        (Kruskal-Wallis p &lt; 0.001). Adding one physician-equivalent (an advanced practice
-        provider) to that shift alone reduced average door-to-provider time by 20.7% (74.3 →
-        59.0 min) and cut the LWBS rate by 59.7% relative (3.98% → 1.60%), with non-overlapping
-        95% confidence intervals between baseline and scenario. Net of the added staffing
-        cost, the simulated fix recovers an estimated $565.8K in annual revenue at a
-        20,000-visit ED.
-      </p>
-
-      <div class="cs-links">
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ed-throughput-analysis">View repository</a>
-        <a href="ed-throughput-analysis/dashboard.html">View live dashboard</a>
-      </div>
-    </section>
-        <section class="case-study wrap" id="ehr-patient-outcomes">
-      <div class="cs-tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</div>
-      <h2>Electronic Health Records (EHR) / Patient Outcomes Analysis</h2>
-
-      <h3>The problem</h3>
-      <p>
-        Most healthcare analyst roles start here: a raw EHR extract that's genuinely messy —
-        inconsistent formatting, missing values, duplicate records, mixed date formats from
-        merged source systems — before any of the interesting demographic, diagnosis, or
-        cost-driver analysis can happen. A limited-capacity care-management team needed a
-        concrete answer to who to call first, not just a clean dataset.
-      </p>
-
-      <h3>The approach</h3>
-      <p>
-        A synthetic 8,323-encounter dataset was built with realistic clinical data-quality
-        problems on purpose — 10 different gender formattings, 3 mixed date formats, impossible
-        ages and lengths of stay, duplicate records — then cleaned with every decision logged to
-        an audit trail rather than applied silently. The cleaned data was analyzed for cost
-        drivers (ANOVA, linear regression) and length-of-stay patterns by comorbidity burden
-        (Kruskal-Wallis), then used to define a rule-based cohort of high-cost, high-complexity
-        patients.
-      </p>
-
-      <h3>The result</h3>
-      <p>
-        Just 3.7% of patients (149 people) account for 25% of total spend, and that same cohort
-        carries a 47% 30-day readmission rate versus 22.5% for everyone else — more than double
-        the risk. Length of stay turned out to be the dominant cost lever (+$3,539 per additional
-        day), with comorbidity count driving cost mainly indirectly, through its effect on length
-        of stay rather than as an independent factor.
-      </p>
-
-      <div class="cs-links">
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/ehr-patient-outcomes">View repository</a>
-        <a href="ehr-patient-outcomes/dashboard.html">View live dashboard</a>
-      </div>
-    </section>
-      <section class="case-study wrap" id="claims-denial-revenue-cycle">
-  <div class="cs-tag" style="color:#7C3AED; border-color:#7C3AED;">Revenue Cycle</div>
-  <h2>Claims Denial &amp; Revenue Cycle Analysis</h2>
-
-  <h3>The problem</h3>
-  <p>
-    Denial rate and clean claim rate are two of the most closely watched revenue
-    cycle metrics in any hospital or payer operation — every point of denial is
-    cash sitting in A/R, or written off entirely, and every reworked claim ties up
-    staff time that a clean-on-first-pass claim never would. Most denial
-    dashboards stop at "denial rate is up" — a KPI without a cause, and without
-    an owner. The real question isn't whether denials are elevated; it's *which*
-    specific, fixable process broke, and who should fix it.
-  </p>
-
-  <h3>The approach</h3>
-  <p>
-    9,000 claims (Jan 2024–Jun 2025, ~$50.2M billed) were modeled across 8 payers,
-    10 service lines, and 4 facilities, with CMS CARC-style denial reason codes
-    attached to every denied claim. Rather than stopping at descriptive KPIs
-    (denial rate, clean claim rate, collection rate, turnaround time), the
-    analysis pushed into root-cause territory: a before/after cohort comparison
-    to detect payer policy shifts, a reason-code Pareto to find the 80/20 of
-    denial volume, and a payer × service-line heatmap to isolate hot spots that
-    aggregate rates wash out. Every root cause was then translated into a
-    dollar-quantified opportunity, so the output is a prioritized action list, not
-    just a chart.
-  </p>
-
-  <h3>The result</h3>
-  <p>
-    Denial rate came in at 15.5% against a &lt;10% industry target, with clean
-    claim rate at 84.5% — 5.5–10.5 points below the standard 90–95% benchmark.
-    Rather than leaving that as one number, the analysis isolated three specific,
-    ownable root causes: a Meridian Health Plan prior-authorization policy change
-    that pushed Orthopedics/Oncology denials from 21.4% to 55.9% starting a
-    specific date; a Behavioral Health documentation gap driving a 44.9%
-    medical-necessity denial share, roughly double every other service line; and
-    a front-desk eligibility-verification gap at one facility (46.0% of its
-    denials vs. 20.7% elsewhere). Denied-and-reworked claims took 2.5x longer to
-    resolve than clean ones (51.6 vs. 20.5 days), and $8.24M in billed charges
-    were denied on first submission, of which $6.20M was ultimately written off —
-    with an estimated $250K recoverable through a targeted pre-authorization fix
-    alone.
-  </p>
-
-  <div class="cs-links">
-    <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/claims-denial-revenue-cycle-analysis">View repository</a>
-    <a href="claims-denial-revenue-cycle-analysis/dashboard.html">View live dashboard</a>
-  </div>
-</section>
-      
-      <section class="cs-placeholder wrap">
-        <p class="coming-soon">More case studies coming soon.</p>
-    </section>
-    
   </main>
 
-  <footer class="site-footer wrap">
-    <div class="footer-row">
-      <span>Strategic HealthCare BI Analyst</span>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>&copy; 2026 Strategic HealthCare BI Analyst. All rights reserved.</span>
       <div class="footer-links">
-        <a href="mailto:strategichealthcarebianalyst@gmail.com">Email</a>
-        <a href="tel:+923004984892">Phone</a>
-        <a href="https://www.linkedin.com/in/aimms-consulting-35895439">LinkedIn</a>
-        <a href="https://github.com/sohail5993">GitHub</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/sohail5993" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    const PAGE_SIZE = 6; // cards per page — tweak as you add more case studies
+    const grid = document.getElementById('caseStudyGrid');
+
+    // --- Sort: real case studies first, "coming soon" cards always last ---
+    const allCards = Array.from(grid.querySelectorAll('.project-card'));
+    const realCards = allCards.filter(c => !c.classList.contains('coming-soon-card'));
+    const comingSoonCards = allCards.filter(c => c.classList.contains('coming-soon-card'));
+    [...realCards, ...comingSoonCards].forEach(card => grid.appendChild(card));
+
+    // --- Pagination (runs on the sorted order) ---
+    const cards = Array.from(grid.querySelectorAll('.project-card'));
+    const pagination = document.getElementById('pagination');
+    const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+
+    function showPage(page) {
+      cards.forEach((card, i) => {
+        const cardPage = Math.floor(i / PAGE_SIZE) + 1;
+        card.style.display = cardPage === page ? '' : 'none';
+      });
+      pagination.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.page) === page);
+      });
+    }
+
+    if (totalPages > 1) {
+      for (let p = 1; p <= totalPages; p++) {
+        const btn = document.createElement('button');
+        btn.textContent = p;
+        btn.dataset.page = p;
+        btn.addEventListener('click', () => showPage(p));
+        pagination.appendChild(btn);
+      }
+    }
+
+    showPage(1);
+  })();
+  </script>
 
 </body>
 </html>
