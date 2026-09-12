@@ -11,6 +11,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
+  <script>
+(function () {
+  const PAGE_SIZE = 6; // cards per page — tweak as you add more projects
+  const grid = document.getElementById('projectGrid');
+  const cards = Array.from(grid.querySelectorAll('.project-card'));
+  const pagination = document.getElementById('pagination');
+  const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+
+  function showPage(page) {
+    cards.forEach((card, i) => {
+      const cardPage = Math.floor(i / PAGE_SIZE) + 1;
+      card.style.display = cardPage === page ? '' : 'none';
+    });
+    pagination.querySelectorAll('button').forEach(btn => {
+      btn.classList.toggle('active', Number(btn.dataset.page) === page);
+    });
+  }
+
+  if (totalPages > 1) {
+    for (let p = 1; p <= totalPages; p++) {
+      const btn = document.createElement('button');
+      btn.textContent = p;
+      btn.dataset.page = p;
+      btn.addEventListener('click', () => showPage(p));
+      pagination.appendChild(btn);
+    }
+  }
+
+  showPage(1);
+})();
+</script>
 <body>
 
   <header class="site-header">
@@ -40,14 +71,16 @@
   <main>
 
     <section class="page-header wrap">
+  <div class="page-header-row">
+    <div class="page-header-text">
       <h1>Projects</h1>
-      <p class="lede">Seven healthcare data &amp; analytics projects, start to finish. Scroll across, then click into the one you want to see in full.</p>
-    </section>
+      <p class="lede">Seven healthcare data &amp; analytics projects, start to finish — plus a few coming soon.</p>
+    </div>
+    <nav class="pagination" id="pagination" aria-label="Project pages"></nav>
+  </div>
+</section>
 
-    <p class="scroll-hint">Scroll horizontally →</p>
-
-    <section class="project-grid">
-
+    <section class="project-grid" id="projectGrid">
       <a href="projects/hospital-readmission-prediction.html" class="project-card" style="--card-color:#0F5C5C;">
         <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
         <h3>Hospital 30-Day Readmission Prediction</h3>
