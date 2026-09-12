@@ -495,29 +495,50 @@ p {
 
 /* ---- Project Grid (horizontal landing strip) ---- */
 .project-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
-  overflow-x: auto;
-  padding: 20px 24px 16px;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--rule) transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
 }
-.project-grid::-webkit-scrollbar { height: 8px; }
-.project-grid::-webkit-scrollbar-track { background: transparent; }
-.project-grid::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
 
-.scroll-hint {
-  padding: 0 24px;
-  font-size: 13px;
+.page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.page-header-text { flex: 1 1 320px; }
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.pagination button {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: #fff;
   color: var(--muted);
-  font-style: italic;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
-
-.project-card {
-  scroll-snap-align: start;
-  flex: 0 0 260px;
+.pagination button:hover { border-color: var(--teal); color: var(--teal); }
+.pagination button.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .project-card { flex: 0 0 220px; }
+}
   display: flex;
   flex-direction: column;
   background: #FFFFFF;
