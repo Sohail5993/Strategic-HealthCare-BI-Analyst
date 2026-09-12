@@ -11,37 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-  <script>
-(function () {
-  const PAGE_SIZE = 6; // cards per page — tweak as you add more projects
-  const grid = document.getElementById('projectGrid');
-  const cards = Array.from(grid.querySelectorAll('.project-card'));
-  const pagination = document.getElementById('pagination');
-  const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
-
-  function showPage(page) {
-    cards.forEach((card, i) => {
-      const cardPage = Math.floor(i / PAGE_SIZE) + 1;
-      card.style.display = cardPage === page ? '' : 'none';
-    });
-    pagination.querySelectorAll('button').forEach(btn => {
-      btn.classList.toggle('active', Number(btn.dataset.page) === page);
-    });
-  }
-
-  if (totalPages > 1) {
-    for (let p = 1; p <= totalPages; p++) {
-      const btn = document.createElement('button');
-      btn.textContent = p;
-      btn.dataset.page = p;
-      btn.addEventListener('click', () => showPage(p));
-      pagination.appendChild(btn);
-    }
-  }
-
-  showPage(1);
-})();
-</script>
 <body>
 
   <header class="site-header">
@@ -71,16 +40,17 @@
   <main>
 
     <section class="page-header wrap">
-  <div class="page-header-row">
-    <div class="page-header-text">
-      <h1>Projects</h1>
-      <p class="lede">Seven healthcare data &amp; analytics projects, start to finish — plus a few coming soon.</p>
-    </div>
-    <nav class="pagination" id="pagination" aria-label="Project pages"></nav>
-  </div>
-</section>
+      <div class="page-header-row">
+        <div class="page-header-text">
+          <h1>Projects</h1>
+          <p class="lede">Seven healthcare data &amp; analytics projects, start to finish — plus a few coming soon.</p>
+        </div>
+        <nav class="pagination" id="pagination" aria-label="Project pages"></nav>
+      </div>
+    </section>
 
     <section class="project-grid" id="projectGrid">
+
       <a href="projects/hospital-readmission-prediction.html" class="project-card" style="--card-color:#0F5C5C;">
         <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
         <h3>Hospital 30-Day Readmission Prediction</h3>
@@ -130,8 +100,74 @@
         <span class="card-cta">View project →</span>
       </a>
 
+      <div class="project-card coming-soon-card" style="--card-color:#9AA5AD;">
+        <span class="tag coming-soon-tag">Predictive Analytics</span>
+        <h3>Patient No-Show Prediction Model</h3>
+        <p>Predicts which scheduled appointments are likely to be no-shows, so clinics can double-book strategically instead of guessing.</p>
+        <span class="coming-soon-label">Coming soon</span>
+      </div>
+
+      <div class="project-card coming-soon-card" style="--card-color:#9AA5AD;">
+        <span class="tag coming-soon-tag">Cost &amp; Quality</span>
+        <h3>Length-of-Stay Outlier Analysis</h3>
+        <p>Identifies which units and diagnosis groups are driving abnormal length-of-stay outliers, and why.</p>
+        <span class="coming-soon-label">Coming soon</span>
+      </div>
+
     </section>
 
   </main>
 
-  <footer class="site-footer
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>&copy; 2026 Strategic HealthCare BI Analyst. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="contact.html">Contact</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/sohail5993" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    const PAGE_SIZE = 6; // cards per page — tweak as you add more projects
+    const grid = document.getElementById('projectGrid');
+
+    // --- Sort: real projects first, "coming soon" cards always last ---
+    const allCards = Array.from(grid.querySelectorAll('.project-card'));
+    const realCards = allCards.filter(c => !c.classList.contains('coming-soon-card'));
+    const comingSoonCards = allCards.filter(c => c.classList.contains('coming-soon-card'));
+    [...realCards, ...comingSoonCards].forEach(card => grid.appendChild(card));
+
+    // --- Pagination (runs on the sorted order) ---
+    const cards = Array.from(grid.querySelectorAll('.project-card'));
+    const pagination = document.getElementById('pagination');
+    const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+
+    function showPage(page) {
+      cards.forEach((card, i) => {
+        const cardPage = Math.floor(i / PAGE_SIZE) + 1;
+        card.style.display = cardPage === page ? '' : 'none';
+      });
+      pagination.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.page) === page);
+      });
+    }
+
+    if (totalPages > 1) {
+      for (let p = 1; p <= totalPages; p++) {
+        const btn = document.createElement('button');
+        btn.textContent = p;
+        btn.dataset.page = p;
+        btn.addEventListener('click', () => showPage(p));
+        pagination.appendChild(btn);
+      }
+    }
+
+    showPage(1);
+  })();
+  </script>
+
+</body>
+</html>
