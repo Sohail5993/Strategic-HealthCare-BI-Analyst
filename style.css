@@ -607,3 +607,14 @@ p {
   margin-bottom: 18px;
 }
 .back-link:hover { text-decoration: underline; }
+.dashboard-embed {
+  padding: 8px 24px 60px;
+  max-width: 1300px;
+  overflow-x: auto;
+}
+.dashboard-embed iframe {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
