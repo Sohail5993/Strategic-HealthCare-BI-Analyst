@@ -1,4 +1,0 @@
-shift,n_visits,avg_door_to_triage,avg_triage_to_room,avg_room_to_physician,avg_door_to_provider,lwbs_pct
-Evening (16-24),7974,35.2,54.9,72.4,161.8,5.89
-Day (08-16),9352,27.3,46.5,59.8,133.4,2.73
-Night (00-08),2541,13.7,24.9,30.4,69.0,0.24

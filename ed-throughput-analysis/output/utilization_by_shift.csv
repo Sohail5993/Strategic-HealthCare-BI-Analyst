@@ -1,4 +1,0 @@
-shift,arrivals_per_hr,triage_nurses,rho_triage,beds,rho_beds,physicians,rho_physicians
-Day (08-16),3.2,3,0.49,18,0.14,4,0.8
-Evening (16-24),2.73,3,0.53,18,0.14,4,0.82
-Night (00-08),0.87,2,0.1,14,0.03,2,0.22
