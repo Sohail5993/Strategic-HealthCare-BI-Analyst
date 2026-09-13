@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Schema Redesign — Strategic HealthCare BI Analyst</title>
+<meta name="description" content="Two flat, denormalized datasets rebuilt into governed star schemas — explicit grain, conformed dimensions, and a documented reason behind every choice.">
+<link rel="icon" type="image/png" href="../../assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="../../index.html" class="brand-link">
+        <img src="../../assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="brand-mark">
+        <div class="brand-block">
+          <span class="brand-name">Strategic HealthCare BI Analyst</span>
+          <span class="brand-tagline">Transforming HealthCare Complexities into Growth Blueprints</span>
+        </div>
+      </a>
+    </div>
+    <nav class="site-nav">
+      <div class="wrap nav-inner">
+        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../../about.html" class="nav-link">About</a>
+        <a href="../../approach.html" class="nav-link">Approach</a>
+        <a href="../../certifications.html" class="nav-link">Certifications</a>
+        <a href="../../projects.html" class="nav-link">Projects</a>
+        <a href="../../case-studies.html" class="nav-link active">Case Studies</a>
+        <a href="../../blog.html" class="nav-link">Blog</a>
+        <a href="../../contact.html" class="nav-link">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-study wrap">
+      <a href="../../case-studies.html" class="back-link">← All case studies</a>
+
+      <span class="cs-tag" style="color:#1E8A8A; border-color:#1E8A8A;">Semantic BI</span>
+      <h2>Star Schema Redesign</h2>
+
+      <div class="headline-finding">
+        <strong>Headline Finding</strong>
+        <p>Two flat, denormalized extracts were rebuilt into governed star schemas — explicit grain, conformed dimensions, selectively-applied history tracking, and one bridge table resolving a many-to-many relationship neither flat table could represent cleanly.</p>
+      </div>
+
+      <h3>The Problem</h3>
+      <p>Two working datasets — a retail order extract and a healthcare patient-encounters extract — were both flat and denormalized. Every report built on top of them had to re-derive its own business logic from scratch, the grain of each table was implicit rather than stated anywhere, and slowly-changing attributes — a patient's assigned provider, a customer's region — were being overwritten in place instead of tracked over time.</p>
+
+      <h3>The Approach</h3>
+      <p>Both datasets were rebuilt as governed star schemas, with an explicit grain statement written for every fact table and a set of dimensions conformed once rather than redefined per report. Slowly Changing Dimension Type 2 was applied only to the handful of attributes where tracking history genuinely mattered, not as a blanket default across every dimension. Where a fact table needed to relate to a dimension in a true many-to-many way — a single patient encounter carrying multiple diagnosis codes — a bridge table was introduced specifically to resolve it, since a simple foreign key couldn't represent that relationship cleanly. Every one of these modeling decisions was documented alongside the schema itself, not left implicit.</p>
+
+      <h3>The Outcome</h3>
+      <p>The result is two complete, query-ready star schemas — retail and healthcare — each with explicit grain, conformed dimensions, selectively-applied SCD2, and one bridge table handling the many-to-many case. The healthcare model in particular now gives the rest of this portfolio's patient-level projects a schema pattern to build on, rather than starting from a flat extract each time.</p>
+
+      <div class="cs-links">
+        <a href="../../projects/star-schema-redesign.html">View full project write-up →</a>
+        <a href="../../case-studies.html">Back to all case studies</a>
+      </div>
+    </section>
+
+    <div class="cs-placeholder wrap">
+      <p><em>Explore the interactive schema diagram in the <a href="../../star-schema-redesign/dashboard.html">live dashboard</a>.</em></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>&copy; 2026 Strategic HealthCare BI Analyst. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="../../contact.html">Contact</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/sohail5993" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
