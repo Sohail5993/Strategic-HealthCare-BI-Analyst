@@ -10,329 +10,440 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* ---- Certifications page: horizontal grid + pagination overrides ---- */
+  .cert-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    margin:0 0 28px;
+  }
+  .cert-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .cert-filter-btn{
+    font-family:'Inter',sans-serif;
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:.02em;
+    padding:7px 14px;
+    border-radius:999px;
+    border:1px solid #d8d8d8;
+    background:#fff;
+    color:#555;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .cert-filter-btn:hover{ border-color:#0F5C5C; color:#0F5C5C; }
+  .cert-filter-btn.active{
+    background:#0F5C5C;
+    border-color:#0F5C5C;
+    color:#fff;
+  }
+
+  .cert-pagination{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-shrink:0;
+  }
+  .cert-page-btn{
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    font-weight:600;
+    min-width:32px;
+    height:32px;
+    padding:0 8px;
+    border-radius:8px;
+    border:1px solid #d8d8d8;
+    background:#fff;
+    color:#444;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .cert-page-btn:hover:not(:disabled){ border-color:#0F5C5C; color:#0F5C5C; }
+  .cert-page-btn.active{
+    background:#0F5C5C;
+    border-color:#0F5C5C;
+    color:#fff;
+  }
+  .cert-page-btn:disabled{ opacity:.35; cursor:not-allowed; }
+  .cert-page-ellipsis{ padding:0 4px; color:#999; font-size:0.85rem; }
+
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    align-items:stretch;
+  }
+  .cert-card{
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    border-radius:12px;
+    border:1px solid #e7e7e7;
+    box-shadow:0 1px 3px rgba(20,20,20,0.04);
+    overflow:hidden;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cert-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px rgba(20,20,20,0.08);
+  }
+  .cert-card-rule{ height:5px; width:100%; }
+  .cert-card-body{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    padding:20px 22px 22px;
+  }
+  .cert-card-tag{
+    display:inline-block;
+    font-family:'Inter',sans-serif;
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#0F5C5C;
+    margin-bottom:10px;
+  }
+  .cert-card-body h3{
+    font-family:'Fraunces',serif;
+    font-size:1.08rem;
+    line-height:1.3;
+    margin:0 0 6px;
+  }
+  .cert-card-body .cert-meta{
+    font-family:'Inter',sans-serif;
+    font-size:0.8rem;
+    color:#8a8a8a;
+    margin:0 0 12px;
+  }
+  .cert-card-body p:not(.cert-meta){
+    font-family:'Inter',sans-serif;
+    font-size:0.88rem;
+    line-height:1.55;
+    color:#4a4a4a;
+    flex:1;
+    margin:0 0 16px;
+  }
+  .cert-card-body .cert-links a{
+    font-family:'Inter',sans-serif;
+    font-size:0.82rem;
+    font-weight:600;
+    text-decoration:none;
+    color:#0F5C5C;
+    border-bottom:1px solid currentColor;
+    padding-bottom:1px;
+  }
+  .cert-card-body .cert-links a:hover{ opacity:.7; }
+
+  .cert-empty{
+    font-family:'Inter',sans-serif;
+    color:#888;
+    padding:40px 0;
+    text-align:center;
+  }
+
+  @media (max-width: 980px){
+    .cert-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width: 640px){
+    .cert-grid{ grid-template-columns:1fr; }
+    .cert-toolbar{ flex-direction:column; align-items:flex-start; }
+    .cert-pagination{ align-self:flex-end; }
+  }
+</style>
 </head>
 <body>
+<header class="site-header">
+<div class="wrap header-inner">
+<a href="index.html" class="brand-link">
+<img src="assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="brand-mark">
+<div class="brand-block">
+<span class="brand-name">Strategic HealthCare BI Analyst</span>
+<span class="brand-tagline">Transforming HealthCare Complexities into Growth Blueprints</span>
+</div>
+</a>
+</div>
+<nav class="site-nav">
+<div class="wrap nav-inner">
+<a href="index.html" class="nav-link">Home</a>
+<a href="about.html" class="nav-link">About</a>
+<a href="approach.html" class="nav-link">Approach</a>
+<a href="certifications.html" class="nav-link active">Certifications</a>
+<a href="projects.html" class="nav-link">Projects</a>
+<a href="case-studies.html" class="nav-link">Case Studies</a>
+<a href="blog.html" class="nav-link">Blog</a>
+<a href="contact.html" class="nav-link">Contact</a>
+</div>
+</nav>
+</header>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a href="index.html" class="brand-link">
-        <img src="assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="brand-mark">
-        <div class="brand-block">
-          <span class="brand-name">Strategic HealthCare BI Analyst</span>
-          <span class="brand-tagline">Transforming HealthCare Complexities into Growth Blueprints</span>
-        </div>
-      </a>
-    </div>
-    <nav class="site-nav">
-      <div class="wrap nav-inner">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="approach.html" class="nav-link">Approach</a>
-        <a href="certifications.html" class="nav-link active">Certifications</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="case-studies.html" class="nav-link">Case Studies</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
+<main>
 <section class="page-header wrap">
 <h1>Certifications</h1>
 <p class="lede">27 verified credentials spanning healthcare domain knowledge, data science, BI platforms, and strategic delivery — each links to its official verification page.</p>
 </section>
-<section class="cert-group wrap"><h2 class="cert-category">Healthcare & Life Sciences</h2><div class="cert-list">
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#0F5C5C;"></div>
-        <div class="cert-body">
-          <h3>Medical Billing and Coding Fundamentals</h3>
-          <p class="cert-meta">Coursera — MedCerts · 2024</p>
-          <p>ICD-10, CPT, and HCPCS classification systems alongside revenue cycle management — standardizing clinical diagnoses and procedure data for claims analysis, reimbursement modeling, and fraud detection.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/specialization/LRSZ1A3W8B1O">Verify credential</a></div>
-        </div>
-      </div>
+<section class="cert-group wrap">
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#0F5C5C;"></div>
-        <div class="cert-body">
-          <h3>Introduction to Genomic Technologies</h3>
-          <p class="cert-meta">Coursera — Johns Hopkins University · 2017</p>
-          <p>Computational molecular biology, high-throughput sequencing analysis, and genomic algorithms — enabling extraction and processing of genetic data to advance precision medicine and personalized care strategies.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/JK2DLNKD37YK">Verify credential</a></div>
-        </div>
-      </div>
+  <div class="cert-toolbar">
+    <div class="cert-filters" id="certFilters"></div>
+    <div class="cert-pagination" id="certPagination"></div>
+  </div>
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#0F5C5C;"></div>
-        <div class="cert-body">
-          <h3>Pharmaceutical and Medical Device Innovations</h3>
-          <p class="cert-meta">Coursera — University of Minnesota · 2017</p>
-          <p>The end-to-end commercialization lifecycle, FDA regulatory pathways, IP protection, and market access strategy — domain context for modeling drug performance and clinical technology adoption.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/F22U6KDZWSQV">Verify credential</a></div>
-        </div>
-      </div>
-</div></section>
-<section class="cert-group wrap"><h2 class="cert-category">Data, Analytics &amp; BI Platforms</h2><div class="cert-list">
+  <div class="cert-grid" id="certGrid"></div>
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Google Data Analytics</h3>
-          <p class="cert-meta">Coursera — Google Career Certificate · 2025</p>
-          <p>The end-to-end analytical workflow from data cleaning and SQL querying to R programming and visualization — transforming complex electronic health records into clean, compliant, actionable insight.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/Y5UV9UGQ26V9">Verify credential</a></div>
-        </div>
-      </div>
+</section>
+</main>
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Google Business Intelligence</h3>
-          <p class="cert-meta">Coursera — Google Career Certificate · 2024</p>
-          <p>Data modeling, ETL pipeline architecture, and dashboard development — unifying disparate hospital records and automating clinical KPI reporting for real-time decision-making.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/B8F3U6D20QBW">Verify credential</a></div>
-        </div>
-      </div>
+<footer class="site-footer wrap">
+<div class="footer-row">
+<span>Strategic HealthCare BI Analyst</span>
+<div class="footer-links">
+<a href="mailto:strategichealthcarebianalyst@gmail.com">Email</a>
+<a href="tel:+923004984892">Phone</a>
+<a href="https://www.linkedin.com/in/aimms-consulting-35895439">LinkedIn</a>
+<a href="https://github.com/sohail5993">GitHub</a>
+</div>
+</div>
+</footer>
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Data Analytics For Lean Six Sigma</h3>
-          <p class="cert-meta">Coursera — University of Amsterdam · 2017</p>
-          <p>Statistical hypothesis testing, regression analysis, and Minitab-driven process improvement under the Lean Six Sigma framework — root-causing inefficiencies in hospital workflows and clinical operations.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/YYBCWL5HTJCM">Verify credential</a></div>
-        </div>
-      </div>
+<script>
+const CERTS = [
+  // ---- Healthcare & Life Sciences ----
+  { cat:"Healthcare & Life Sciences", color:"#0F5C5C",
+    title:"Medical Billing and Coding Fundamentals",
+    meta:"Coursera — MedCerts · 2024",
+    desc:"ICD-10, CPT, and HCPCS classification systems alongside revenue cycle management — standardizing clinical diagnoses and procedure data for claims analysis, reimbursement modeling, and fraud detection.",
+    link:"https://coursera.org/verify/specialization/LRSZ1A3W8B1O" },
+  { cat:"Healthcare & Life Sciences", color:"#0F5C5C",
+    title:"Introduction to Genomic Technologies",
+    meta:"Coursera — Johns Hopkins University · 2017",
+    desc:"Computational molecular biology, high-throughput sequencing analysis, and genomic algorithms — enabling extraction and processing of genetic data to advance precision medicine and personalized care strategies.",
+    link:"https://www.coursera.org/account/accomplishments/verify/JK2DLNKD37YK" },
+  { cat:"Healthcare & Life Sciences", color:"#0F5C5C",
+    title:"Pharmaceutical and Medical Device Innovations",
+    meta:"Coursera — University of Minnesota · 2017",
+    desc:"The end-to-end commercialization lifecycle, FDA regulatory pathways, IP protection, and market access strategy — domain context for modeling drug performance and clinical technology adoption.",
+    link:"https://www.coursera.org/account/accomplishments/verify/F22U6KDZWSQV" },
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Microsoft Power BI Data Analyst</h3>
-          <p class="cert-meta">Coursera — Microsoft · 2024</p>
-          <p>Advanced DAX metric engineering, semantic data modeling, and row-level security — secure executive dashboards tracking hospital operations and patient outcomes while safeguarding sensitive data.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/8SAFXVFKMO5N">Verify credential</a></div>
-        </div>
-      </div>
+  // ---- Data, Analytics & BI Platforms ----
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Google Data Analytics",
+    meta:"Coursera — Google Career Certificate · 2025",
+    desc:"The end-to-end analytical workflow from data cleaning and SQL querying to R programming and visualization — transforming complex electronic health records into clean, compliant, actionable insight.",
+    link:"https://coursera.org/verify/professional-cert/Y5UV9UGQ26V9" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Google Business Intelligence",
+    meta:"Coursera — Google Career Certificate · 2024",
+    desc:"Data modeling, ETL pipeline architecture, and dashboard development — unifying disparate hospital records and automating clinical KPI reporting for real-time decision-making.",
+    link:"https://coursera.org/verify/professional-cert/B8F3U6D20QBW" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Data Analytics For Lean Six Sigma",
+    meta:"Coursera — University of Amsterdam · 2017",
+    desc:"Statistical hypothesis testing, regression analysis, and Minitab-driven process improvement under the Lean Six Sigma framework — root-causing inefficiencies in hospital workflows and clinical operations.",
+    link:"https://www.coursera.org/account/accomplishments/verify/YYBCWL5HTJCM" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Microsoft Power BI Data Analyst",
+    meta:"Coursera — Microsoft · 2024",
+    desc:"Advanced DAX metric engineering, semantic data modeling, and row-level security — secure executive dashboards tracking hospital operations and patient outcomes while safeguarding sensitive data.",
+    link:"https://coursera.org/verify/professional-cert/8SAFXVFKMO5N" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Tableau BI Analyst",
+    meta:"Coursera — Tableau · 2024",
+    desc:"Advanced visual analytics, dynamic parameterization, and spatial plotting — turning epidemiological data and patient-flow patterns into intuitive visual stories for clinical leadership.",
+    link:"https://coursera.org/verify/professional-cert/GN4PZ7VUSP3J" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Executive Data Science Capstone",
+    meta:"Coursera — Johns Hopkins University · 2017",
+    desc:"Leading end-to-end data science projects, pipeline governance, and executive storytelling — translating clinical models and statistical findings into strategic decisions for health system leaders.",
+    link:"https://www.coursera.org/account/accomplishments/specialization/MALCTXT4K628" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"A Crash Course in Data Science",
+    meta:"Coursera — Johns Hopkins University · 2017",
+    desc:"Core principles of machine learning, statistical inference, and data science workflows — a practical foundation for evaluating clinical data methodologies against strategic goals.",
+    link:"https://www.coursera.org/account/accomplishments/verify/2ERV3HM5RYFU" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Managing Data Analysis",
+    meta:"Coursera — Johns Hopkins University · 2017",
+    desc:"Oversight of analytical workflows, statistical model iteration, and pipeline governance — quality-control frameworks that keep clinical analyses reproducible and compliant before they reach decision-makers.",
+    link:"https://www.coursera.org/account/accomplishments/verify/6HKZWGMXW8PE" },
+  { cat:"Data, Analytics & BI Platforms", color:"#C96F14",
+    title:"Data Science in Real Life",
+    meta:"Coursera — Johns Hopkins University · 2017",
+    desc:"Managing messy datasets, unexpected pipeline disruptions, and applied statistical modeling — cleaning incomplete electronic health records and producing reliable insight under real-world conditions.",
+    link:"https://www.coursera.org/account/accomplishments/verify/YZACWBZLEEYL" },
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Tableau BI Analyst</h3>
-          <p class="cert-meta">Coursera — Tableau · 2024</p>
-          <p>Advanced visual analytics, dynamic parameterization, and spatial plotting — turning epidemiological data and patient-flow patterns into intuitive visual stories for clinical leadership.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/GN4PZ7VUSP3J">Verify credential</a></div>
-        </div>
-      </div>
+  // ---- Strategy & Business Analytics ----
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Strategic Management",
+    meta:"Coursera — Copenhagen Business School",
+    desc:"A framework for formulating and executing strategy under market volatility and digital disruption — the same lens applied to navigating shifting healthcare policy and payer dynamics.",
+    link:"https://www.coursera.org/account/accomplishments/verify/BZV246U5373G" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Strategy Formulation",
+    meta:"Coursera — Copenhagen Business School",
+    desc:"Tools for identifying growth vectors and designing corporate strategy from market analysis through execution — applied to positioning analytics initiatives around real organizational value.",
+    link:"https://www.coursera.org/account/accomplishments/verify/7GEGT99XPYR5" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Decision-Making &amp; Scenarios",
+    meta:"Coursera — University of Pennsylvania",
+    desc:"Financial modeling, scenario planning, and capital-budgeting methods for stress-testing decisions under uncertainty — the discipline behind turning a readmission model into a defensible ROI case.",
+    link:"https://www.coursera.org/account/accomplishments/verify/YXH42AHE58CN" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Operations Analytics",
+    meta:"Coursera — Wharton, University of Pennsylvania · 2017",
+    desc:"Capacity planning, supply chain optimization, and demand forecasting — streamlining hospital bed management, clinical staffing schedules, and pharmaceutical inventory.",
+    link:"https://www.coursera.org/account/accomplishments/verify/FBACTTKB6BGN" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"People Analytics",
+    meta:"Coursera — Wharton, University of Pennsylvania · 2017",
+    desc:"Workforce planning, performance modeling, and retention analytics — optimizing nurse-to-patient staffing ratios and reducing clinical burnout and turnover.",
+    link:"https://www.coursera.org/account/accomplishments/verify/PES32EM9CADV" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Customer Analytics",
+    meta:"Coursera — Wharton, University of Pennsylvania · 2017",
+    desc:"Patient segmentation, behavioral modeling, and satisfaction tracking — personalizing patient engagement and optimizing telehealth adoption strategies.",
+    link:"https://www.coursera.org/account/accomplishments/verify/99F5R86ZCE6W" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Accounting Analytics",
+    meta:"Coursera — Wharton, University of Pennsylvania · 2017",
+    desc:"Financial statement modeling, cost accounting, and revenue cycle analysis — optimizing hospital billing workflows and tracking cost-per-patient metrics.",
+    link:"https://www.coursera.org/account/accomplishments/verify/CHMQ4EGHHZKU" },
+  { cat:"Strategy & Business Analytics", color:"#6C3483",
+    title:"Business Metrics for Data-Driven Companies",
+    meta:"Coursera — Duke University · 2017",
+    desc:"Key performance indicators, metric alignment, and data-driven decision frameworks — translating clinical and financial data into metrics that optimize hospital performance and patient satisfaction.",
+    link:"https://www.coursera.org/account/accomplishments/verify/KVB8BPFJN6D9" },
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Executive Data Science Capstone</h3>
-          <p class="cert-meta">Coursera — Johns Hopkins University · 2017</p>
-          <p>Leading end-to-end data science projects, pipeline governance, and executive storytelling — translating clinical models and statistical findings into strategic decisions for health system leaders.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/specialization/MALCTXT4K628">Verify credential</a></div>
-        </div>
-      </div>
+  // ---- Delivery, Governance & Professional Development ----
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"Google Project Management",
+    meta:"Coursera — Google",
+    desc:"End-to-end project delivery across Waterfall and Agile methodologies — scope, stakeholder management, and quality control for shipping analytics work on time and on budget.",
+    link:"https://www.coursera.org/account/accomplishments/professional-cert/6FME71P1HTZE" },
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"Google Agile Project Management",
+    meta:"Coursera — Google",
+    desc:"Scrum and Kanban frameworks, backlog management, and sprint retrospectives — running analytics work in short, stakeholder-responsive cycles rather than big-bang releases.",
+    link:"https://www.coursera.org/account/accomplishments/verify/8VZCL5XBADVV" },
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"SAP Business Analyst",
+    meta:"Coursera — SAP · 2025",
+    desc:"Enterprise business process modeling, requirements engineering, and SAP S/4HANA module integration — streamlining hospital supply chains and clinical procurement workflows.",
+    link:"https://coursera.org/verify/professional-cert/VRQ38MNEYNB2" },
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"SAP Technology Consultant",
+    meta:"Coursera — SAP · 2025",
+    desc:"Technical system architecture, SAP S/4HANA infrastructure implementation, and data integration protocols — securing cross-system pipelines and EHR interoperability while maintaining high availability for critical hospital IT operations.",
+    link:"https://coursera.org/verify/professional-cert/8B6W3FME5IH6" },
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"Google Cybersecurity (incl. SQL &amp; Python)",
+    meta:"Coursera — Google Career Certificate · 2025",
+    desc:"Threat modeling, network hardening, and incident response, plus hands-on Python and SQL — grounding for protecting sensitive patient data across healthcare data pipelines.",
+    link:"https://coursera.org/verify/professional-cert/LXXDXPKA66CQ" },
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"Strategic Career Self-Management",
+    meta:"Coursera — The State University of New York",
+    desc:"Treating a career as a strategic portfolio — market positioning, gap analysis, and personal branding — the same analytical rigor turned inward.",
+    link:"https://www.coursera.org/account/accomplishments/verify/D4VNCVHCVZJX" },
+  { cat:"Delivery, Governance & Professional Development", color:"#1E8A8A",
+    title:"What is Social?",
+    meta:"Coursera — Northwestern University",
+    desc:"Social media strategy and audience analytics fundamentals — rounding out the toolkit for communicating healthcare analytics work to a wider professional audience.",
+    link:"https://www.coursera.org/account/accomplishments/verify/4MNL3E3P2KQR" }
+];
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>A Crash Course in Data Science</h3>
-          <p class="cert-meta">Coursera — Johns Hopkins University · 2017</p>
-          <p>Core principles of machine learning, statistical inference, and data science workflows — a practical foundation for evaluating clinical data methodologies against strategic goals.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/2ERV3HM5RYFU">Verify credential</a></div>
-        </div>
-      </div>
+const PAGE_SIZE = 6;
+let currentFilter = "All";
+let currentPage = 1;
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Managing Data Analysis</h3>
-          <p class="cert-meta">Coursera — Johns Hopkins University · 2017</p>
-          <p>Oversight of analytical workflows, statistical model iteration, and pipeline governance — quality-control frameworks that keep clinical analyses reproducible and compliant before they reach decision-makers.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/6HKZWGMXW8PE">Verify credential</a></div>
-        </div>
-      </div>
+const CATEGORIES = ["All", ...Array.from(new Set(CERTS.map(c => c.cat)))];
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#C96F14;"></div>
-        <div class="cert-body">
-          <h3>Data Science in Real Life</h3>
-          <p class="cert-meta">Coursera — Johns Hopkins University · 2017</p>
-          <p>Managing messy datasets, unexpected pipeline disruptions, and applied statistical modeling — cleaning incomplete electronic health records and producing reliable insight under real-world conditions.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/YZACWBZLEEYL">Verify credential</a></div>
-        </div>
-      </div>
-</div></section>
-<section class="cert-group wrap"><h2 class="cert-category">Strategy &amp; Business Analytics</h2><div class="cert-list">
+function filteredCerts(){
+  return currentFilter === "All" ? CERTS : CERTS.filter(c => c.cat === currentFilter);
+}
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Strategic Management</h3>
-          <p class="cert-meta">Coursera — Copenhagen Business School</p>
-          <p>A framework for formulating and executing strategy under market volatility and digital disruption — the same lens applied to navigating shifting healthcare policy and payer dynamics.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/BZV246U5373G">Verify credential</a></div>
-        </div>
-      </div>
+function renderFilters(){
+  const el = document.getElementById("certFilters");
+  el.innerHTML = CATEGORIES.map(cat =>
+    `<button class="cert-filter-btn${cat === currentFilter ? " active" : ""}" data-cat="${cat}">${cat}</button>`
+  ).join("");
+  el.querySelectorAll(".cert-filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentFilter = btn.dataset.cat;
+      currentPage = 1;
+      renderAll();
+    });
+  });
+}
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Strategy Formulation</h3>
-          <p class="cert-meta">Coursera — Copenhagen Business School</p>
-          <p>Tools for identifying growth vectors and designing corporate strategy from market analysis through execution — applied to positioning analytics initiatives around real organizational value.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/7GEGT99XPYR5">Verify credential</a></div>
-        </div>
-      </div>
+function renderGrid(){
+  const list = filteredCerts();
+  const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  if (currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageCerts = list.slice(start, start + PAGE_SIZE);
 
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Decision-Making &amp; Scenarios</h3>
-          <p class="cert-meta">Coursera — University of Pennsylvania</p>
-          <p>Financial modeling, scenario planning, and capital-budgeting methods for stress-testing decisions under uncertainty — the discipline behind turning a readmission model into a defensible ROI case.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/YXH42AHE58CN">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Operations Analytics</h3>
-          <p class="cert-meta">Coursera — Wharton, University of Pennsylvania · 2017</p>
-          <p>Capacity planning, supply chain optimization, and demand forecasting — streamlining hospital bed management, clinical staffing schedules, and pharmaceutical inventory.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/FBACTTKB6BGN">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>People Analytics</h3>
-          <p class="cert-meta">Coursera — Wharton, University of Pennsylvania · 2017</p>
-          <p>Workforce planning, performance modeling, and retention analytics — optimizing nurse-to-patient staffing ratios and reducing clinical burnout and turnover.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/PES32EM9CADV">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Customer Analytics</h3>
-          <p class="cert-meta">Coursera — Wharton, University of Pennsylvania · 2017</p>
-          <p>Patient segmentation, behavioral modeling, and satisfaction tracking — personalizing patient engagement and optimizing telehealth adoption strategies.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/99F5R86ZCE6W">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Accounting Analytics</h3>
-          <p class="cert-meta">Coursera — Wharton, University of Pennsylvania · 2017</p>
-          <p>Financial statement modeling, cost accounting, and revenue cycle analysis — optimizing hospital billing workflows and tracking cost-per-patient metrics.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/CHMQ4EGHHZKU">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#6C3483;"></div>
-        <div class="cert-body">
-          <h3>Business Metrics for Data-Driven Companies</h3>
-          <p class="cert-meta">Coursera — Duke University · 2017</p>
-          <p>Key performance indicators, metric alignment, and data-driven decision frameworks — translating clinical and financial data into metrics that optimize hospital performance and patient satisfaction.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/KVB8BPFJN6D9">Verify credential</a></div>
-        </div>
-      </div>
-</div></section>
-<section class="cert-group wrap"><h2 class="cert-category">Delivery, Governance &amp; Professional Development</h2><div class="cert-list">
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>Google Project Management</h3>
-          <p class="cert-meta">Coursera — Google</p>
-          <p>End-to-end project delivery across Waterfall and Agile methodologies — scope, stakeholder management, and quality control for shipping analytics work on time and on budget.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/professional-cert/6FME71P1HTZE">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>Google Agile Project Management</h3>
-          <p class="cert-meta">Coursera — Google</p>
-          <p>Scrum and Kanban frameworks, backlog management, and sprint retrospectives — running analytics work in short, stakeholder-responsive cycles rather than big-bang releases.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/8VZCL5XBADVV">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>SAP Business Analyst</h3>
-          <p class="cert-meta">Coursera — SAP · 2025</p>
-          <p>Enterprise business process modeling, requirements engineering, and SAP S/4HANA module integration — streamlining hospital supply chains and clinical procurement workflows.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/VRQ38MNEYNB2">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>SAP Technology Consultant</h3>
-          <p class="cert-meta">Coursera — SAP · 2025</p>
-          <p>Technical system architecture, SAP S/4HANA infrastructure implementation, and data integration protocols — securing cross-system pipelines and EHR interoperability while maintaining high availability for critical hospital IT operations.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/8B6W3FME5IH6">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>Google Cybersecurity (incl. SQL &amp; Python)</h3>
-          <p class="cert-meta">Coursera — Google Career Certificate · 2025</p>
-          <p>Threat modeling, network hardening, and incident response, plus hands-on Python and SQL — grounding for protecting sensitive patient data across healthcare data pipelines.</p>
-          <div class="cert-links"><a href="https://coursera.org/verify/professional-cert/LXXDXPKA66CQ">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>Strategic Career Self-Management</h3>
-          <p class="cert-meta">Coursera — The State University of New York</p>
-          <p>Treating a career as a strategic portfolio — market positioning, gap analysis, and personal branding — the same analytical rigor turned inward.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/D4VNCVHCVZJX">Verify credential</a></div>
-        </div>
-      </div>
-
-      <div class="cert">
-        <div class="cert-rule" style="background:#1E8A8A;"></div>
-        <div class="cert-body">
-          <h3>What is Social?</h3>
-          <p class="cert-meta">Coursera — Northwestern University</p>
-          <p>Social media strategy and audience analytics fundamentals — rounding out the toolkit for communicating healthcare analytics work to a wider professional audience.</p>
-          <div class="cert-links"><a href="https://www.coursera.org/account/accomplishments/verify/4MNL3E3P2KQR">Verify credential</a></div>
-        </div>
-      </div>
-</div></section>
-  </main>
-
-  <footer class="site-footer wrap">
-    <div class="footer-row">
-      <span>Strategic HealthCare BI Analyst</span>
-      <div class="footer-links">
-        <a href="mailto:strategichealthcarebianalyst@gmail.com">Email</a>
-        <a href="tel:+923004984892">Phone</a>
-        <a href="https://www.linkedin.com/in/aimms-consulting-35895439">LinkedIn</a>
-        <a href="https://github.com/sohail5993">GitHub</a>
+  const grid = document.getElementById("certGrid");
+  if (!pageCerts.length){
+    grid.innerHTML = `<p class="cert-empty">No certifications in this category.</p>`;
+    return;
+  }
+  grid.innerHTML = pageCerts.map(c => `
+    <div class="cert-card">
+      <div class="cert-card-rule" style="background:${c.color};"></div>
+      <div class="cert-card-body">
+        <span class="cert-card-tag" style="color:${c.color};">${c.cat}</span>
+        <h3>${c.title}</h3>
+        <p class="cert-meta">${c.meta}</p>
+        <p>${c.desc}</p>
+        <div class="cert-links"><a href="${c.link}" target="_blank" rel="noopener">Verify credential</a></div>
       </div>
     </div>
-  </footer>
+  `).join("");
+}
 
+function renderPagination(){
+  const list = filteredCerts();
+  const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  const el = document.getElementById("certPagination");
+
+  let html = `<button class="cert-page-btn" id="certPrev" ${currentPage === 1 ? "disabled" : ""}>‹</button>`;
+  for (let p = 1; p <= totalPages; p++){
+    html += `<button class="cert-page-btn${p === currentPage ? " active" : ""}" data-page="${p}">${p}</button>`;
+  }
+  html += `<button class="cert-page-btn" id="certNext" ${currentPage === totalPages ? "disabled" : ""}>›</button>`;
+  el.innerHTML = html;
+
+  el.querySelectorAll("[data-page]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentPage = parseInt(btn.dataset.page, 10);
+      renderAll();
+    });
+  });
+  const prev = document.getElementById("certPrev");
+  const next = document.getElementById("certNext");
+  if (prev) prev.addEventListener("click", () => { if (currentPage > 1){ currentPage--; renderAll(); } });
+  if (next) next.addEventListener("click", () => { if (currentPage < totalPages){ currentPage++; renderAll(); } });
+}
+
+function renderAll(){
+  renderFilters();
+  renderGrid();
+  renderPagination();
+  document.querySelector(".cert-group").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+renderFilters();
+renderGrid();
+renderPagination();
+</script>
 </body>
 </html>
