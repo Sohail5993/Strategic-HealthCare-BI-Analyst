@@ -24,6 +24,7 @@
     display:flex;
     flex-wrap:wrap;
     gap:8px;
+    margin-top:20px;
   }
   .cert-filter-btn{
     font-family:'Inter',sans-serif;
@@ -74,9 +75,18 @@
   .cert-page-btn:disabled{ opacity:.35; cursor:not-allowed; }
   .cert-page-ellipsis{ padding:0 4px; color:#999; font-size:0.85rem; }
 
-  /* Widen this page's content column so cards fill the row like the Projects page does */
-  .page-header.wrap,
-  section.cert-group.wrap{
+  /* Header row: title on the left, pagination top-right — same width as the rest of the site */
+  .cert-header-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .cert-header-row h1{ margin-bottom:8px; }
+
+  /* Only the card-grid section bleeds wider, matching the Projects page */
+  section.cert-grid-section.wrap{
     max-width:1320px !important;
     padding-left:20px;
     padding-right:20px;
@@ -171,8 +181,9 @@
   }
   @media (max-width: 640px){
     .cert-grid{ grid-template-columns:1fr; }
+    .cert-header-row{ flex-direction:column; }
     .cert-toolbar{ flex-direction:column; align-items:flex-start; }
-    .cert-pagination{ align-self:flex-end; }
+    .cert-pagination{ align-self:flex-start; }
   }
 </style>
 </head>
@@ -203,19 +214,18 @@
 
 <main>
 <section class="page-header wrap">
-<h1>Certifications</h1>
-<p class="lede">27 verified credentials spanning healthcare domain knowledge, data science, BI platforms, and strategic delivery — each links to its official verification page.</p>
+<div class="cert-header-row">
+  <div>
+    <h1>Certifications</h1>
+    <p class="lede">27 verified credentials spanning healthcare domain knowledge, data science, BI platforms, and strategic delivery — each links to its official verification page.</p>
+  </div>
+  <div class="cert-pagination" id="certPagination"></div>
+</div>
+<div class="cert-filters" id="certFilters"></div>
 </section>
 
-<section class="cert-group wrap">
-
-  <div class="cert-toolbar">
-    <div class="cert-filters" id="certFilters"></div>
-    <div class="cert-pagination" id="certPagination"></div>
-  </div>
-
+<section class="cert-group cert-grid-section wrap">
   <div class="cert-grid" id="certGrid"></div>
-
 </section>
 </main>
 
