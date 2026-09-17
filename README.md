@@ -16,8 +16,7 @@ Portfolio of healthcare data analytics projects covering cost & quality, access 
 | Care-Gap Prediction for Chronic Disease Management | Chronic Disease | [`chronic-disease-care-gap-prediction/`](./chronic-disease-care-gap-prediction) |
 | Provider Network Adequacy Analysis | Access & Network | [`projects/network-adequacy/`](./projects/network-adequacy) |
 | Star Schema Redesign | Semantic BI | [`star-schema-redesign/`](./star-schema-redesign) |
-Add LOS Prediction project to README index
-| Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling | Cost & Quality | [los-prediction-cost-of-care/](los-prediction-cost-of-care/) |
+| Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling | Cost & Quality | [`los-prediction-cost-of-care/`](./los-prediction-cost-of-care) |
 
 Each project folder contains its own `README.md` with the full case study (problem, approach, result), a `dashboard.html`, and the underlying data/scripts.
 
