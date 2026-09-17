@@ -1,0 +1,71 @@
+county,specialty,provider_count,county_type,member_count,providers_per_1000,min_providers_per_1000,ratio_pass
+Cedar Ridge Cty,Behavioral Health,1,Rural,2880,0.347,0.15,True
+Cedar Ridge Cty,Cardiology,1,Rural,2880,0.347,0.08,True
+Cedar Ridge Cty,Dermatology,1,Rural,2880,0.347,0.04,True
+Cedar Ridge Cty,OB/GYN,2,Rural,2880,0.694,0.12,True
+Cedar Ridge Cty,Orthopedics,1,Rural,2880,0.347,0.05,True
+Cedar Ridge Cty,Primary Care,7,Rural,2880,2.431,0.45,True
+Central Metro,Behavioral Health,22,Urban,13440,1.637,0.3,True
+Central Metro,Cardiology,14,Urban,13440,1.042,0.15,True
+Central Metro,Dermatology,12,Urban,13440,0.893,0.09,True
+Central Metro,Endocrinology,9,Urban,13440,0.67,0.08,True
+Central Metro,General Surgery,8,Urban,13440,0.595,0.08,True
+Central Metro,Neurology,7,Urban,13440,0.521,0.05,True
+Central Metro,OB/GYN,16,Urban,13440,1.19,0.2,True
+Central Metro,Oncology,8,Urban,13440,0.595,0.06,True
+Central Metro,Orthopedics,12,Urban,13440,0.893,0.1,True
+Central Metro,Primary Care,51,Urban,13440,3.795,0.55,True
+East Suburban,Behavioral Health,11,Suburban,7680,1.432,0.25,True
+East Suburban,Cardiology,8,Suburban,7680,1.042,0.12,True
+East Suburban,Dermatology,5,Suburban,7680,0.651,0.08,True
+East Suburban,Endocrinology,4,Suburban,7680,0.521,0.06,True
+East Suburban,General Surgery,4,Suburban,7680,0.521,0.07,True
+East Suburban,Neurology,3,Suburban,7680,0.391,0.04,True
+East Suburban,OB/GYN,9,Suburban,7680,1.172,0.18,True
+East Suburban,Oncology,3,Suburban,7680,0.391,0.05,True
+East Suburban,Orthopedics,6,Suburban,7680,0.781,0.09,True
+East Suburban,Primary Care,33,Suburban,7680,4.297,0.55,True
+Millbrook County,Behavioral Health,2,Rural,3360,0.595,0.15,True
+Millbrook County,Cardiology,1,Rural,3360,0.298,0.08,True
+Millbrook County,Dermatology,1,Rural,3360,0.298,0.04,True
+Millbrook County,General Surgery,1,Rural,3360,0.298,0.04,True
+Millbrook County,OB/GYN,2,Rural,3360,0.595,0.12,True
+Millbrook County,Orthopedics,1,Rural,3360,0.298,0.05,True
+Millbrook County,Primary Care,9,Rural,3360,2.679,0.45,True
+North Metro,Behavioral Health,19,Urban,6720,2.827,0.3,True
+North Metro,Cardiology,13,Urban,6720,1.935,0.15,True
+North Metro,Dermatology,10,Urban,6720,1.488,0.09,True
+North Metro,Endocrinology,9,Urban,6720,1.339,0.08,True
+North Metro,General Surgery,9,Urban,6720,1.339,0.08,True
+North Metro,Neurology,6,Urban,6720,0.893,0.05,True
+North Metro,OB/GYN,17,Urban,6720,2.53,0.2,True
+North Metro,Oncology,8,Urban,6720,1.19,0.06,True
+North Metro,Orthopedics,12,Urban,6720,1.786,0.1,True
+North Metro,Primary Care,50,Urban,6720,7.44,0.55,True
+Prairie County,Behavioral Health,1,Rural,2880,0.347,0.15,True
+Prairie County,Cardiology,1,Rural,2880,0.347,0.08,True
+Prairie County,Dermatology,1,Rural,2880,0.347,0.04,True
+Prairie County,General Surgery,1,Rural,2880,0.347,0.04,True
+Prairie County,OB/GYN,1,Rural,2880,0.347,0.12,True
+Prairie County,Orthopedics,1,Rural,2880,0.347,0.05,True
+Prairie County,Primary Care,8,Rural,2880,2.778,0.45,True
+South Suburban,Behavioral Health,10,Suburban,4800,2.083,0.25,True
+South Suburban,Cardiology,8,Suburban,4800,1.667,0.12,True
+South Suburban,Dermatology,6,Suburban,4800,1.25,0.08,True
+South Suburban,Endocrinology,3,Suburban,4800,0.625,0.06,True
+South Suburban,General Surgery,4,Suburban,4800,0.833,0.07,True
+South Suburban,Neurology,2,Suburban,4800,0.417,0.04,True
+South Suburban,OB/GYN,11,Suburban,4800,2.292,0.18,True
+South Suburban,Oncology,2,Suburban,4800,0.417,0.05,True
+South Suburban,Orthopedics,5,Suburban,4800,1.042,0.09,True
+South Suburban,Primary Care,31,Suburban,4800,6.458,0.55,True
+West Suburban,Behavioral Health,10,Suburban,6240,1.603,0.25,True
+West Suburban,Cardiology,6,Suburban,6240,0.962,0.12,True
+West Suburban,Dermatology,6,Suburban,6240,0.962,0.08,True
+West Suburban,Endocrinology,3,Suburban,6240,0.481,0.06,True
+West Suburban,General Surgery,4,Suburban,6240,0.641,0.07,True
+West Suburban,Neurology,2,Suburban,6240,0.321,0.04,True
+West Suburban,OB/GYN,11,Suburban,6240,1.763,0.18,True
+West Suburban,Oncology,3,Suburban,6240,0.481,0.05,True
+West Suburban,Orthopedics,5,Suburban,6240,0.801,0.09,True
+West Suburban,Primary Care,29,Suburban,6240,4.647,0.55,True

@@ -1,0 +1,81 @@
+county,county_type,specialty,members_sampled,pct_distance_compliant,pct_wait_compliant,pct_fully_compliant,avg_nearest_distance,avg_nearest_wait,providers_per_1000,min_providers_per_1000,ratio_pass,gap_score
+Millbrook County,Rural,Neurology,250,99.6,22.8,22.8,27.6,46.3,,,,62.2
+West Suburban,Suburban,Neurology,250,100.0,19.2,19.2,6.2,32.6,0.321,0.04,True,50.8
+Prairie County,Rural,Neurology,250,100.0,43.2,43.2,23.1,26.2,,,,41.8
+North Metro,Urban,Neurology,250,100.0,29.6,29.6,4.4,22.1,0.893,0.05,True,40.400000000000006
+South Suburban,Suburban,Behavioral Health,250,100.0,36.4,36.4,2.8,14.2,2.083,0.25,True,33.6
+West Suburban,Suburban,Behavioral Health,250,100.0,40.0,40.0,3.5,14.2,1.603,0.25,True,30.0
+North Metro,Urban,Behavioral Health,250,100.0,40.4,40.4,1.9,14.3,2.827,0.3,True,29.6
+South Suburban,Suburban,Neurology,250,100.0,40.8,40.8,5.2,32.6,0.417,0.04,True,29.200000000000003
+Cedar Ridge Cty,Rural,OB/GYN,250,98.8,41.2,41.2,14.5,22.0,0.694,0.12,True,28.799999999999997
+Millbrook County,Rural,OB/GYN,250,99.2,41.2,41.2,13.8,21.6,0.595,0.12,True,28.799999999999997
+Central Metro,Urban,Behavioral Health,250,100.0,43.6,43.6,1.6,12.1,1.637,0.3,True,26.4
+East Suburban,Suburban,Behavioral Health,250,100.0,44.8,44.8,4.0,12.6,1.432,0.25,True,25.200000000000003
+West Suburban,Suburban,Cardiology,250,100.0,45.6,45.6,5.3,14.9,0.962,0.12,True,24.4
+East Suburban,Suburban,Neurology,250,100.0,54.0,54.0,5.2,19.7,0.391,0.04,True,16.0
+East Suburban,Suburban,OB/GYN,250,100.0,58.0,58.0,3.8,12.4,1.172,0.18,True,12.0
+West Suburban,Suburban,Orthopedics,250,100.0,58.8,58.8,6.2,14.2,0.801,0.09,True,11.200000000000003
+South Suburban,Suburban,General Surgery,250,100.0,67.2,67.2,5.7,10.6,0.833,0.07,True,2.799999999999997
+South Suburban,Suburban,Orthopedics,250,100.0,69.6,69.6,4.9,9.8,1.042,0.09,True,0.4000000000000057
+West Suburban,Suburban,Endocrinology,250,100.0,70.0,70.0,5.6,16.9,0.481,0.06,True,0.0
+West Suburban,Suburban,Dermatology,250,100.0,70.8,70.8,4.2,19.3,0.962,0.08,True,-0.7999999999999972
+West Suburban,Suburban,General Surgery,250,100.0,71.2,71.2,4.9,8.4,0.641,0.07,True,-1.2000000000000028
+Central Metro,Urban,OB/GYN,250,100.0,71.2,71.2,1.6,12.0,1.19,0.2,True,-1.2000000000000028
+South Suburban,Suburban,OB/GYN,250,100.0,71.6,71.6,3.7,11.2,2.292,0.18,True,-1.5999999999999943
+South Suburban,Suburban,Endocrinology,250,100.0,72.0,72.0,4.1,18.0,0.625,0.06,True,-2.0
+Prairie County,Rural,Primary Care,250,98.8,74.8,73.6,7.7,9.9,2.778,0.45,True,-3.5999999999999943
+South Suburban,Suburban,Cardiology,250,100.0,73.6,73.6,4.2,12.5,1.667,0.12,True,-3.5999999999999943
+Millbrook County,Rural,Dermatology,250,100.0,74.8,74.8,15.5,16.5,0.298,0.04,True,-4.799999999999997
+Central Metro,Urban,Neurology,250,100.0,75.2,75.2,2.5,16.4,0.521,0.05,True,-5.200000000000003
+North Metro,Urban,Dermatology,250,100.0,75.6,75.6,2.4,16.4,1.488,0.09,True,-5.599999999999994
+North Metro,Urban,OB/GYN,250,100.0,76.8,76.8,1.9,9.4,2.53,0.2,True,-6.799999999999997
+West Suburban,Suburban,OB/GYN,250,100.0,78.4,78.4,4.2,11.2,1.763,0.18,True,-8.400000000000006
+East Suburban,Suburban,Endocrinology,250,100.0,78.8,78.8,5.2,15.8,0.521,0.06,True,-8.799999999999997
+Millbrook County,Rural,Behavioral Health,250,100.0,79.2,79.2,13.5,11.8,0.595,0.15,True,-9.200000000000003
+Prairie County,Rural,Endocrinology,250,99.6,94.8,94.4,24.8,11.1,,,,-9.400000000000006
+Cedar Ridge Cty,Rural,Primary Care,250,97.2,82.4,80.4,10.2,9.7,2.431,0.45,True,-10.400000000000006
+South Suburban,Suburban,Primary Care,250,100.0,80.4,80.4,2.0,7.2,6.458,0.55,True,-10.400000000000006
+East Suburban,Suburban,Primary Care,250,99.6,82.4,82.0,2.1,6.9,4.297,0.55,True,-12.0
+West Suburban,Suburban,Primary Care,250,100.0,82.4,82.4,2.2,6.3,4.647,0.55,True,-12.400000000000006
+Central Metro,Urban,Dermatology,250,100.0,82.4,82.4,1.9,16.4,0.893,0.09,True,-12.400000000000006
+Cedar Ridge Cty,Rural,General Surgery,250,97.6,100.0,97.6,26.7,7.4,,,,-12.599999999999994
+Cedar Ridge Cty,Rural,Neurology,250,99.6,98.0,97.6,30.2,25.1,,,,-12.599999999999994
+South Suburban,Suburban,Dermatology,250,100.0,83.6,83.6,4.1,14.4,1.25,0.08,True,-13.599999999999994
+Millbrook County,Rural,Endocrinology,250,99.2,99.6,98.8,25.2,19.6,,,,-13.799999999999997
+Cedar Ridge Cty,Rural,Endocrinology,250,99.6,99.6,99.2,28.4,18.9,,,,-14.200000000000003
+Central Metro,Urban,Cardiology,250,100.0,84.4,84.4,1.8,10.2,1.042,0.15,True,-14.400000000000006
+Central Metro,Urban,General Surgery,250,100.0,84.4,84.4,2.4,7.6,0.595,0.08,True,-14.400000000000006
+Millbrook County,Rural,Oncology,250,99.6,100.0,99.6,24.5,3.6,,,,-14.599999999999994
+Cedar Ridge Cty,Rural,Oncology,250,99.6,100.0,99.6,26.8,7.1,,,,-14.599999999999994
+Central Metro,Urban,Endocrinology,250,100.0,84.8,84.8,2.4,14.9,0.67,0.08,True,-14.799999999999997
+Prairie County,Rural,Oncology,250,100.0,100.0,100.0,25.5,5.3,,,,-15.0
+Cedar Ridge Cty,Rural,Dermatology,250,100.0,85.6,85.6,18.9,17.4,0.347,0.04,True,-15.599999999999994
+Cedar Ridge Cty,Rural,Behavioral Health,250,98.0,88.4,86.4,16.4,12.8,0.347,0.15,True,-16.400000000000006
+East Suburban,Suburban,Orthopedics,250,100.0,86.4,86.4,3.8,8.4,0.781,0.09,True,-16.400000000000006
+North Metro,Urban,Endocrinology,250,100.0,86.8,86.8,2.7,13.3,1.339,0.08,True,-16.799999999999997
+East Suburban,Suburban,Dermatology,250,100.0,88.4,88.4,4.6,15.4,0.651,0.08,True,-18.400000000000006
+Millbrook County,Rural,Primary Care,250,97.6,90.8,88.4,9.6,7.0,2.679,0.45,True,-18.400000000000006
+Prairie County,Rural,Behavioral Health,250,97.6,90.4,88.4,17.0,11.5,0.347,0.15,True,-18.400000000000006
+Central Metro,Urban,Primary Care,250,100.0,88.8,88.8,0.9,6.3,3.795,0.55,True,-18.799999999999997
+North Metro,Urban,Orthopedics,250,100.0,88.8,88.8,2.6,6.6,1.786,0.1,True,-18.799999999999997
+Central Metro,Urban,Orthopedics,250,100.0,90.8,90.8,2.4,8.4,0.893,0.1,True,-20.799999999999997
+Prairie County,Rural,Cardiology,250,98.8,92.8,91.6,22.8,5.8,0.347,0.08,True,-21.599999999999994
+Central Metro,Urban,Oncology,250,100.0,92.4,92.4,2.8,5.2,0.595,0.06,True,-22.400000000000006
+Millbrook County,Rural,Cardiology,250,100.0,94.0,94.0,17.7,10.4,0.298,0.08,True,-24.0
+North Metro,Urban,Primary Care,250,100.0,94.0,94.0,1.4,5.8,7.44,0.55,True,-24.0
+North Metro,Urban,Cardiology,250,100.0,94.8,94.8,2.6,8.6,1.935,0.15,True,-24.799999999999997
+Prairie County,Rural,OB/GYN,250,98.4,96.8,95.2,15.5,11.1,0.347,0.12,True,-25.200000000000003
+East Suburban,Suburban,General Surgery,250,100.0,96.0,96.0,5.5,7.0,0.521,0.07,True,-26.0
+East Suburban,Suburban,Oncology,250,100.0,97.2,97.2,5.7,4.9,0.391,0.05,True,-27.200000000000003
+East Suburban,Suburban,Cardiology,250,100.0,98.0,98.0,4.2,9.3,1.042,0.12,True,-28.0
+North Metro,Urban,General Surgery,250,100.0,98.0,98.0,2.5,7.2,1.339,0.08,True,-28.0
+South Suburban,Suburban,Oncology,250,100.0,98.8,98.8,5.5,4.2,0.417,0.05,True,-28.799999999999997
+Cedar Ridge Cty,Rural,Orthopedics,250,99.6,99.2,98.8,24.0,13.3,0.347,0.05,True,-28.799999999999997
+Prairie County,Rural,Dermatology,250,100.0,98.8,98.8,22.2,11.7,0.347,0.04,True,-28.799999999999997
+Millbrook County,Rural,Orthopedics,250,99.6,99.6,99.2,19.3,8.3,0.298,0.05,True,-29.200000000000003
+West Suburban,Suburban,Oncology,250,100.0,99.6,99.6,5.7,5.7,0.481,0.05,True,-29.599999999999994
+Cedar Ridge Cty,Rural,Cardiology,250,100.0,100.0,100.0,17.3,10.6,0.347,0.08,True,-30.0
+North Metro,Urban,Oncology,250,100.0,100.0,100.0,2.7,4.0,1.19,0.06,True,-30.0
+Millbrook County,Rural,General Surgery,250,100.0,100.0,100.0,15.7,7.4,0.298,0.04,True,-30.0
+Prairie County,Rural,Orthopedics,250,100.0,100.0,100.0,16.4,13.1,0.347,0.05,True,-30.0
+Prairie County,Rural,General Surgery,250,100.0,100.0,100.0,16.6,5.4,0.347,0.04,True,-30.0
