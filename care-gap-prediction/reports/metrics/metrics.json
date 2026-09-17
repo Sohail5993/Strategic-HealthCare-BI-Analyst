@@ -1,0 +1,30 @@
+{
+  "base_rate": 0.3463,
+  "best_model": "Logistic Regression",
+  "n_train": 12000,
+  "n_test": 3000,
+  "n_features": 39,
+  "models": [
+    {
+      "model": "Logistic Regression",
+      "roc_auc": 0.716,
+      "pr_auc": 0.583,
+      "precision_at_10pct": 0.7,
+      "precision_at_20pct": 0.613
+    },
+    {
+      "model": "Random Forest",
+      "roc_auc": 0.711,
+      "pr_auc": 0.569,
+      "precision_at_10pct": 0.66,
+      "precision_at_20pct": 0.595
+    },
+    {
+      "model": "XGBoost",
+      "roc_auc": 0.707,
+      "pr_auc": 0.567,
+      "precision_at_10pct": 0.683,
+      "precision_at_20pct": 0.602
+    }
+  ]
+}
