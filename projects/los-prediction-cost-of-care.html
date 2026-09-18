@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling — Strategic HealthCare BI Analyst</title>
-<meta name="description" content="A synthetic-data case study in early identification of high-cost, long-stay hospital admissions, using only information available at the moment of admission.">
-<link rel="icon" type="image/png" href="../assets/logo.png">
+<title>Projects — Strategic HealthCare BI Analyst</title>
+<meta name="description" content="Healthcare data science and analytics projects.">
+<link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a href="../index.html" class="brand-link">
-        <img src="../assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="brand-mark">
+      <a href="index.html" class="brand-link">
+        <img src="assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="brand-mark">
         <div class="brand-block">
           <span class="brand-name">Strategic HealthCare BI Analyst</span>
           <span class="brand-tagline">Transforming HealthCare Complexities into Growth Blueprints</span>
@@ -25,92 +25,149 @@
     </div>
     <nav class="site-nav">
       <div class="wrap nav-inner">
-        <a href="../index.html" class="nav-link">Home</a>
-        <a href="../about.html" class="nav-link">About</a>
-        <a href="../approach.html" class="nav-link">Approach</a>
-        <a href="../certifications.html" class="nav-link">Certifications</a>
-        <a href="../projects.html" class="nav-link active">Projects</a>
-        <a href="../case-studies.html" class="nav-link">Case Studies</a>
-        <a href="../blog.html" class="nav-link">Blog</a>
-        <a href="../contact.html" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="approach.html" class="nav-link">Approach</a>
+        <a href="certifications.html" class="nav-link">Certifications</a>
+        <a href="projects.html" class="nav-link active">Projects</a>
+        <a href="case-studies.html" class="nav-link">Case Studies</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </div>
     </nav>
   </header>
 
   <main>
+
     <section class="page-header wrap">
-      <a href="../projects.html" class="back-link">← All Projects</a>
-      <div class="cs-tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</div>
-      <h1>Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling</h1>
-    </section>
-
-    <section class="case-study wrap">
-      <h3>The problem</h3>
-      <p>
-        Hospitals lose money and beds in predictable ways: a small share of patients
-        account for a disproportionate share of cost, and long-stay patients are usually
-        identifiable early — if anyone is looking. Two operational questions drive this
-        project: which admissions are likely to become long stays, so discharge planning
-        and bed management can start on day one instead of day seven; and which admissions
-        are likely to be expensive, so care management and utilization review can prioritize
-        the right patients. This project builds an end-to-end pipeline — SQL data modeling
-        → exploratory analysis → machine learning → BI dashboard — to answer both questions
-        using only information available at the moment of admission, since that's the only
-        point at which a prediction is operationally useful.
-      </p>
-
-      <h3>The approach</h3>
-      <p>
-        A star schema (dim_patients, dim_payers, fact_encounters) feeds a wide
-        admission-time-only feature table — deliberately excluding anything only known
-        mid-stay, such as procedures performed or diagnoses made after admission, since a
-        model that "predicts" LOS using information from partway through the stay isn't
-        deployable at the decision point that matters. Three targets were modeled — LOS
-        regression, extended-stay classification (LOS &gt; 7 days), and cost regression —
-        each comparing a baseline (linear/logistic regression) against XGBoost, with SHAP
-        used for explainability. Both LOS and cost are heavily right-skewed and were
-        modeled on a log1p() transform accordingly. The data is synthetic, generated with
-        Synthea (500 simulated Massachusetts patients) — there is no PHI or HIPAA scope
-        here, but the pipeline is built as if it eventually needs to meet that bar.
-      </p>
-
-      <h3>The result</h3>
-      <p>
-        XGBoost improved LOS prediction MAE by 14.4% over the linear baseline (0.330 vs.
-        0.385 days). For extended-stay screening — a genuinely hard problem with ~4,400
-        admissions and only 16 positive cases in the test set — a recall-prioritized
-        threshold caught 13 of 16 true extended-stay cases (81% recall) while flagging
-        9.2% of encounters for review (15% precision): a usable screening tool, not a
-        diagnostic one. The cost model was intentionally the weakest of the three (MAE
-        77.1% of mean cost) because an admission-time-only model can't see the
-        procedures and imaging that actually drive cost — reported honestly rather than
-        masked. Using the actual cost gap between extended and non-extended stays in this
-        test set ($52,630), a 15% intervention-effectiveness assumption translates to
-        roughly $102,629 in illustrative savings across the 13 correctly-flagged cases —
-        a directional estimate, not a guarantee. SHAP analysis also surfaced non-trivial
-        influence from race on the extended-stay classifier's predictions — an unprompted
-        finding treated as a concrete audit trigger rather than a footnote: before any real
-        deployment, error rates should be compared across race, ethnicity, and payer-type
-        subgroups for disparate false-negative or false-positive rates.
-      </p>
-
-      <div class="cs-links">
-        <a href="https://github.com/sohail5993/Strategic-HealthCare-BI-Analyst/tree/main/los-prediction-cost-of-care">View repository</a>
+      <div class="page-header-row">
+        <div class="page-header-text">
+          <h1>Projects</h1>
+          <p class="lede">Seven healthcare data &amp; analytics projects, start to finish — plus a few coming soon.</p>
+        </div>
+        <nav class="pagination" id="pagination" aria-label="Project pages"></nav>
       </div>
     </section>
+
+    <section class="project-grid" id="projectGrid">
+
+      <a href="projects/hospital-readmission-prediction.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Hospital 30-Day Readmission Prediction</h3>
+        <p>Predicts which discharged patients are likely to be readmitted, so a limited-capacity care team knows who to call first.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/provider-network-adequacy.html" class="project-card" style="--card-color:#C96F14;">
+        <span class="tag" style="color:#C96F14; border-color:#C96F14;">Access &amp; Network</span>
+        <h3>Provider Network Adequacy Analysis</h3>
+        <p>Tests a payer's network against distance, wait-time, and ratio standards — and finds where it's adequate on paper but not in practice.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/care-gap-prediction.html" class="project-card" style="--card-color:#6C3483;">
+        <span class="tag" style="color:#6C3483; border-color:#6C3483;">Chronic Disease</span>
+        <h3>Care-Gap Prediction for Chronic Disease Management</h3>
+        <p>Flags which chronic disease patients will likely miss their next screening or follow-up, before it becomes a costly complication.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/star-schema-redesign.html" class="project-card" style="--card-color:#1E8A8A;">
+        <span class="tag" style="color:#1E8A8A; border-color:#1E8A8A;">Semantic BI</span>
+        <h3>Star Schema Redesign</h3>
+        <p>Two flat, denormalized datasets rebuilt into governed star schemas — with explicit grain and a documented reason behind every choice.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/ed-throughput-bottleneck.html" class="project-card" style="--card-color:#1B4F72;">
+        <span class="tag" style="color:#1B4F72; border-color:#1B4F72;">Access &amp; Network</span>
+        <h3>Emergency Department Throughput Bottleneck Analysis</h3>
+        <p>Traces where ED patients lose time, then simulates where one added provider cuts wait time the most.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/ehr-patient-outcomes.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Electronic Health Records (EHR) / Patient Outcomes Analysis</h3>
+        <p>Cleans a genuinely messy EHR extract, then finds which patients are driving disproportionate cost and readmission risk.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/claims-denial-revenue-cycle.html" class="project-card" style="--card-color:#7C3AED;">
+        <span class="tag" style="color:#7C3AED; border-color:#7C3AED;">Revenue Cycle</span>
+        <h3>Claims Denial &amp; Revenue Cycle Analysis</h3>
+        <p>Finds the specific, ownable root causes behind an elevated denial rate — not just "denials are up."</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <a href="projects/los-prediction-cost-of-care.html" class="project-card" style="--card-color:#0F5C5C;">
+        <span class="tag" style="color:#0F5C5C; border-color:#0F5C5C;">Cost &amp; Quality</span>
+        <h3>Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling</h3>
+        <p>Predicts which admissions will become long, costly stays using only what's known at check-in, so discharge planning can start on day one instead of day seven.</p>
+        <span class="card-cta">View project →</span>
+      </a>
+
+      <div class="project-card coming-soon-card" style="--card-color:#9AA5AD;">
+        <span class="tag coming-soon-tag">Predictive Analytics</span>
+        <h3>Patient No-Show Prediction Model</h3>
+        <p>Predicts which scheduled appointments are likely to be no-shows, so clinics can double-book strategically instead of guessing.</p>
+        <span class="coming-soon-label">Coming soon</span>
+      </div>
+
+    </section>
+
   </main>
 
-  <footer class="site-footer wrap">
-    <div class="footer-row">
-      <span>Strategic HealthCare BI Analyst</span>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>&copy; 2026 Strategic HealthCare BI Analyst. All rights reserved.</span>
       <div class="footer-links">
-        <a href="mailto:strategichealthcarebianalyst@gmail.com">Email</a>
-        <a href="tel:+923004984892">Phone</a>
-        <a href="https://www.linkedin.com/in/aimms-consulting-35895439">LinkedIn</a>
-        <a href="https://github.com/sohail5993">GitHub</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/sohail5993" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    const PAGE_SIZE = 6; // cards per page — tweak as you add more projects
+    const grid = document.getElementById('projectGrid');
+
+    // --- Sort: real projects first, "coming soon" cards always last ---
+    const allCards = Array.from(grid.querySelectorAll('.project-card'));
+    const realCards = allCards.filter(c => !c.classList.contains('coming-soon-card'));
+    const comingSoonCards = allCards.filter(c => c.classList.contains('coming-soon-card'));
+    [...realCards, ...comingSoonCards].forEach(card => grid.appendChild(card));
+
+    // --- Pagination (runs on the sorted order) ---
+    const cards = Array.from(grid.querySelectorAll('.project-card'));
+    const pagination = document.getElementById('pagination');
+    const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+
+    function showPage(page) {
+      cards.forEach((card, i) => {
+        const cardPage = Math.floor(i / PAGE_SIZE) + 1;
+        card.style.display = cardPage === page ? '' : 'none';
+      });
+      pagination.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.page) === page);
+      });
+    }
+
+    if (totalPages > 1) {
+      for (let p = 1; p <= totalPages; p++) {
+        const btn = document.createElement('button');
+        btn.textContent = p;
+        btn.dataset.page = p;
+        btn.addEventListener('click', () => showPage(p));
+        pagination.appendChild(btn);
+      }
+    }
+
+    showPage(1);
+  })();
+  </script>
 
 </body>
 </html>
