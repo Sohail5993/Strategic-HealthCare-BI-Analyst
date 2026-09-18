@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling — Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f4f6f8; --card: #ffffff; --ink: #172b4d; --muted: #5e6c84;
+    --blue: #4c9aff; --purple: #6554c0; --red: #de350b; --green: #00875a; --teal: #0F5C5C;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); margin: 0; padding: 0 0 64px; }
+  .site-brand-header { background: #ffffff; border-bottom: 1px solid #d7dfdd; padding: 24px; }
+  .site-brand-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .site-brand-mark { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+  .site-brand-name { font-size: 23px; font-weight: 700; letter-spacing: -0.01em; color: #1B2A4A; }
+  .site-brand-tagline { font-size: 13px; color: #5A6B76; font-style: italic; margin-top: 2px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px 0; }
+  h1 { font-size: 1.45rem; margin-bottom: 4px; }
+  h2.section { font-size: 1.1rem; margin: 40px 0 4px; color: var(--teal); }
+  .subtitle { color: var(--muted); margin-top: 0; margin-bottom: 28px; max-width: 780px; line-height: 1.5; }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 12px; }
+  .kpi { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(9,30,66,0.15); }
+  .kpi .num { font-size: 1.9rem; font-weight: 700; }
+  .kpi .lbl { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+  .kpi.red .num { color: var(--red); }
+  .kpi.green .num { color: var(--green); }
+  .kpi.blue .num { color: var(--blue); }
+  .kpi.teal .num { color: var(--teal); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media (max-width: 800px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(9,30,66,0.15); margin-bottom: 24px; }
+  .card h3 { margin-top: 0; font-size: 1.05rem; }
+  .card p.note { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ebecf0; }
+  th { color: var(--muted); font-weight: 600; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; }
+  .badge.high { background: #ffebe6; color: var(--red); }
+  .badge.ok { background: #e3fcef; color: var(--green); }
+  footer { color: var(--muted); font-size: 0.8rem; text-align: center; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<header class="site-brand-header">
+  <div class="site-brand-inner">
+    <img src="../assets/logo.png" alt="Strategic HealthCare BI Analyst logo" class="site-brand-mark">
+    <div>
+      <div class="site-brand-name">Strategic HealthCare BI Analyst</div>
+      <div class="site-brand-tagline">Transforming HealthCare Complexities into Growth Blueprints</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1>Length-of-Stay (LOS) Prediction / Cost-of-Care Modeling</h1>
+  <p class="subtitle">Synthetic data, 500 Synthea patients, no PHI. 4,415 admission-type encounters (emergency, inpatient, urgent care). Trend charts filtered to 2016+ to exclude a small number of much older simulated encounters. This page recreates the Power BI dashboard's charts and KPIs for web viewing — download the .pbix from the repo for the interactive version.</p>
+
+  <h2 class="section">Capacity &amp; Length of Stay</h2>
+  <div class="kpi-row">
+    <div class="kpi teal"><div class="num">4,415</div><div class="lbl">Total admissions</div></div>
+    <div class="kpi blue"><div class="num">0.73</div><div class="lbl">Avg LOS (days)</div></div>
+    <div class="kpi red"><div class="num">3%</div><div class="lbl">Extended-stay rate (&gt;7 days)</div></div>
+    <div class="kpi red"><div class="num">49%</div><div class="lbl">30-day readmission rate</div></div>
+  </div>
+  <div class="card">
+    <h3>Total admissions by day of week</h3>
+    <canvas id="admitDowChart" height="90"></canvas>
+    <p class="note">Weekend admissions (Sat/Sun) run noticeably higher than the midweek trough — worth checking against staffing schedules if this pattern held on real data.</p>
+  </div>
+
+  <h2 class="section">Cost of Care — Financial Overview</h2>
+  <div class="kpi-row">
+    <div class="kpi teal"><div class="num">$23.25M</div><div class="lbl">Total cost</div></div>
+    <div class="kpi blue"><div class="num">$5.27K</div><div class="lbl">Avg cost per encounter</div></div>
+    <div class="kpi red"><div class="num">78%</div><div class="lbl">Top-decile cost share</div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Total cost by payer type</h3>
+      <canvas id="payerChart" height="220"></canvas>
+      <p class="note">Government payers account for 77.1% of total spend in this synthetic population.</p>
+    </div>
+    <div class="card">
+      <h3>Total cost by cost decile</h3>
+      <canvas id="decileChart" height="220"></canvas>
+      <p class="note">The classic healthcare-cost skew: the top decile alone drives 78% of total spend.</p>
+    </div>
+  </div>
+
+  <h2 class="section">LOS Extended-Stay Model Performance</h2>
+  <p class="subtitle" style="margin-bottom:20px;">Evaluated on a held-out test set of 909 encounters (patient-level split). Precision/recall reflect a rare positive class (~3% extended stays) — see the project write-up for full context.</p>
+  <div class="kpi-row">
+    <div class="kpi green"><div class="num">0.81</div><div class="lbl">Model recall</div></div>
+    <div class="kpi blue"><div class="num">0.15</div><div class="lbl">Model precision</div></div>
+    <div class="kpi teal"><div class="num">0.33</div><div class="lbl">LOS MAE (days)</div></div>
+    <div class="kpi red"><div class="num">$1.98K</div><div class="lbl">Cost MAE</div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Confusion matrix — extended stay (is_extended_stay)</h3>
+      <table>
+        <tr><th></th><th>Predicted 0</th><th>Predicted 1</th><th>Total</th></tr>
+        <tr><td><b>Actual 0</b></td><td>822</td><td>71</td><td>893</td></tr>
+        <tr><td><b>Actual 1</b></td><td>3</td><td>13</td><td>16</td></tr>
+        <tr><td><b>Total</b></td><td>825</td><td>84</td><td>909</td></tr>
+      </table>
+      <p class="note">84 of 909 test encounters flagged for review (9.2% flagged rate) to catch 13 of 16 true extended stays.</p>
+    </div>
+    <div class="card">
+      <h3>Model comparison: LOS regression &amp; extended-stay classification</h3>
+      <canvas id="modelCompareChart" height="220"></canvas>
+      <p class="note">XGBoost improves LOS MAE by 14.4% over the linear baseline; ROC-AUC gains are more modest given how rare the positive class is.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Business impact — illustrative, not measured</h3>
+    <table>
+      <tr><th></th><th>Value</th></tr>
+      <tr><td>Actual cost gap: extended vs. non-extended stays (test set)</td><td>$52,630</td></tr>
+      <tr><td>Assumed intervention effectiveness</td><td>15%</td></tr>
+      <tr><td>Illustrative savings per correctly-flagged case</td><td>$7,895</td></tr>
+      <tr><td><b>Illustrative total across 13 true positives</b></td><td><b>~$102,629</b></td></tr>
+    </table>
+    <p class="note">The 15% effectiveness figure is an assumption, not something measured in this data — see the write-up's Limitations section.</p>
+  </div>
+
+  <footer>Synthetic data (Synthea), no PHI. Recreates the Power BI dashboard's KPIs and charts for web viewing.</footer>
+</div>
+
+<script>
+new Chart(document.getElementById('admitDowChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{ label: 'Total admissions', data: [410, 770, 370, 340, 630, 610, 1260], backgroundColor: '#0F5C5C' }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false } } }
+});
+
+new Chart(document.getElementById('payerChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Government (77.1%)', 'Private (14.7%)', 'No Insurance (8.2%)'],
+    datasets: [{ data: [17.93, 3.42, 1.91], backgroundColor: ['#4c9aff', '#00b8d9', '#6554c0'] }]
+  },
+  options: { responsive: true }
+});
+
+new Chart(document.getElementById('decileChart'), {
+  type: 'bar',
+  data: {
+    labels: ['1','2','3','4','5','6','7','8','9','10'],
+    datasets: [{ label: 'Total cost ($M)', data: [0.05,0.08,0.12,0.18,0.25,0.35,0.5,0.75,2.6,18.4], backgroundColor: '#de350b' }]
+  },
+  options: { responsive: true, scales: { x: { title: { display: true, text: 'Cost decile' } }, y: { title: { display: true, text: 'Total cost ($M)' } } }, plugins: { legend: { display: false } } }
+});
+
+new Chart(document.getElementById('modelCompareChart'), {
+  type: 'bar',
+  data: {
+    labels: ['LOS MAE (days)', 'Extended-stay ROC-AUC', 'Extended-stay PR-AUC'],
+    datasets: [
+      { label: 'Baseline', data: [0.385, 0.926, 0.139], backgroundColor: '#de350b' },
+      { label: 'XGBoost', data: [0.330, 0.942, 0.174], backgroundColor: '#00875a' },
+    ]
+  },
+  options: { responsive: true, plugins: { legend: { position: 'top' } } }
+});
+</script>
+</body>
+</html>
