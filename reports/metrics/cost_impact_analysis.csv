@@ -1,6 +1,0 @@
-capacity_tier_pct,n_enrolled_test,true_misses_enrolled_test,precision_at_tier,annualized_n_enrolled,annualized_gross_savings,annualized_program_cost,annualized_net_savings,roi
-5,150,118,0.787,2500,1040800.0,162500.0,878300.0,6.4
-10,300,210,0.7,5000,1852200.0,325000.0,1527200.0,5.7
-15,450,290,0.644,7500,2557800.0,487500.0,2070300.0,5.25
-20,600,368,0.613,10000,3245800.0,650000.0,2595800.0,4.99
-30,900,505,0.561,15000,4454100.0,975000.0,3479100.0,4.57
